@@ -1,0 +1,15 @@
+{
+  "name": "jedi_cat_vuejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TonhaoSantos/jedi_cat_vuejs.git",
+  "author": "Tonhão Santos <ahssantos1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^0.14.8"
+  }
+}
