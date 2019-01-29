@@ -1,6 +1,9 @@
 module.exports = {
   title: 'Jedi Cat Vue.js',
   description: 'Guia de bolso para consultas rápidas de Vue.js',
+  markdown: {
+    lineNumbers: true
+  },
   themeConfig: {
     searchMaxSuggestions: 10,
     serviceWorker: {
@@ -17,7 +20,24 @@ module.exports = {
     ],
     sidebar: [
       {
+        title: 'Guia',
+        children: [
+          '/guide/'
+        ]
+      },
+      {
         title: 'Vue.js',
+        children: [
+          '/guide/introducao',
+          '/guide/intalacao',
+          '/guide/configuracao',
+          '/guide/diretivas',
+          '/guide/rotas',
+          '/guide/store'
+        ]
+      },
+      {
+        title: 'Storybook.js',
         children: [
           '/guide/introducao',
           '/guide/intalacao',
