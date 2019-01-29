@@ -32,7 +32,7 @@ Depois de trabalhar com **Angular** em vários projetos para a **Google** ele pe
 
 O Vue.js foi lançado originalmente em fevereiro de 2014.
 
-Mesmo sendo mantida apenas por seu criador e uma comunidade não muito grande, ela se equipara aos poderosos **Angula** (do Google) e **React** (do Facebook).
+Mesmo sendo mantida apenas por seu criador e uma comunidade não muito grande, ela se equipara aos poderosos **Angular** (do Google) e **React** (do Facebook).
 
 Na minha opnião ___(minha opnião)___ é melhor que qualquer uma destas duas por diversos fatores, dentre eles:
 
