@@ -280,7 +280,7 @@ Se observarmos podemos ver que a store deste módulo também está separado da s
 ## Mixins
 São nada mais nada menos que ___computeds, filters, hooks, methods, watchs e ...___ compartilhados e visíveis por toda a aplicação.
 
-Para que você possa entender, digamos que tenhamos um método/função chamado ```calc``` e queremos usar ele em dois componentes diferentes e que nao possuem relação um com o outro.
+Para que você possa entender, digamos que tenhamos um método/função chamado ```calc``` e queremos usar ele em dois componentes diferentes e que não possuem relação um com o outro.
 
 A forma que fariamos se não fossem os mixins seria para poder usar este método/função nos dois componentes seria criar ela em um componente e depois que estiver funcionando copiar e colar no outro componente. Desta forma temos um trabalho dobrado de criação e manutenção, fora que temos linhas repetidas.
 
@@ -330,7 +330,7 @@ nome_projeto/
 └── README.md
 ```
 
-Onde temos os seguinte arquivo:
+Onde temos os seguintes arquivos:
 - ```index.js```: Este arquivo é utilizado para importar e exportar todos os mixins
 
 ```js
@@ -341,3 +341,117 @@ export const myMixins {
   // ...
 }
 ```
+
+## SASS
+Comece criando um arquivo chamado ```vue.config.js``` na raiz do projeto para configurar as opções de configuração e um diretório chamado *scss* no diretório *src* com os seguintes arquivos.
+
+>Vale ressaltar que os arquivos (exceto os glob.scss) dos diretórios ___components___, ___layout___, ___pages___, ___themes___ e ___vendor___ são para ilustrar os tipos de arquivos que você vai disponibilizar em cada diretório. Os dos diretórios ___abstracts___ e ___base___ são obrigatórios pois você vai precisar para configurar em todos os projetos, caso não, edite conforme necessitar.
+
+```js
+nome_projeto/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── mixins/
+│   ├── plugins/
+│   ├── scss/
+│   │   ├── abstracts/
+│   │   │   ├── _functions.scss
+│   │   │   ├── _mixins.scss
+│   │   │   ├── _variables.scss
+│   │   │   └── glob.scss
+│   │   ├── base/
+│   │   │   ├── _reset.scss
+│   │   │   ├── _typography.scss
+│   │   │   └── glob.scss
+│   │   ├── components/
+│   │   │   ├── _buttons.scss
+│   │   │   └── glob.scss
+│   │   ├── layout/
+│   │   │   ├── _footer.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _grid.scss
+│   │   │   ├── _header.scss
+│   │   │   ├── _navigation.scss
+│   │   │   ├── _sidebar.scss
+│   │   │   └── glob.scss
+│   │   ├── pages/
+│   │   │   ├── _about.scss
+│   │   │   ├── _contact.scss
+│   │   │   ├── _home.scss
+│   │   │   └── glob.scss
+│   │   ├── themes/
+│   │   │   ├── _admin.scss
+│   │   │   ├── _theme.scss
+│   │   │   └── glob.scss
+│   │   ├── vendors/
+│   │   │   ├── _bootstrap.scss
+│   │   │   ├── _jquery-ui.scss
+│   │   │   └── glob.scss
+│   │   └── main.scss
+│   ├── store/
+│   ├── views/
+│   ├── App.vue
+│   ├── main.js
+│   └── router.js
+├── vue.config.js
+└── README.md
+```
+
+Sempre que for criar um arquivo novo comece com um underline *_* antes do nome (_button.scss, _card.scss, ...).
+
+#### vue.config.js
+```js
+module.exports = {
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `
+          @import "@/scss/main.scss";
+        `
+      }
+    }
+  }
+}
+```
+
+#### main.scss
+```scss
+// File: main.scss
+// This file contains all imports
+@import 'abstracts/glob';
+@import 'vendors/glob';
+@import 'base/glob';
+@import 'layout/glob';
+@import 'components/glob';
+@import 'pages/glob';
+@import 'themes/glob';
+```
+
+Todos os arquvos (exceto os glob.scss) possuem este conteúdo padrão *+* a sua estilização:
+
+#### _nomearquivo.scss
+```scss
+// File: _nomearquivo.scss
+// This file contains all functions.
+/* STYLES GO HERE */
+.estilizacoes {
+
+}
+```
+
+Podemos observar que temos o nome do arquivo no começo (sem o underline), uma descrição sobre os conteúdos do arquivo, um comentário e logo depois você pode começar a estilizar.
+
+O *glob* por sua vez recebe a importação dos arquivos onde ele esta localizado, então se ele etiver no diretório que guarda os arquivos de componentes ele vai importar os arquivos que forem ser criados.
+
+#### glob.scss
+```scss
+// File: glob.scss
+// This file contains all imports
+@import 'components/button';
+@import 'components/card';
+```
+
+Na importação não precisamos informar o underline e nem a extensão dos arquivos *.scss*.
+
+Agora as estilizações que forem sendo criadas estarão disponíveis globalmente na aplicação, sem a necessidade de termos que importar toda vez nos componentes e afins. Podemos acessar variáveis, funções, mixins, ...
