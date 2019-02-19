@@ -156,12 +156,7 @@ nome_projeto/
 │   │       └── FileLayoutOneCpLyt.vue
 │   │       └── FileLayoutTwoCpLyt.vue
 │   ├── mixins/
-│   │   ├── computed.js
-│   │   ├── filters.js
-│   │   ├── hooks.js
-│   │   ├── index.js
-│   │   ├── methods.js
-│   │   └── watch.js
+│   │   └── index.js
 │   ├── plugins/
 │   │   ├── file-plugin-one.js
 │   │   └── file-plugin-two.js

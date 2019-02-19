@@ -27,17 +27,18 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
-import mixins from '@/mixins'
+import { myMixins } from './mixins'
 
 // Plugins
 // import './plugins/file-plugin-name'
+
+Vue.mixin(myMixins)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  mixins,
   render: h => h(App)
 }).$mount('#app')
 ```
@@ -60,7 +61,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: FileOnePageVw
     }
   ]
 })
@@ -76,7 +77,7 @@ export default new Router({
 <script>
   // JavaScript
 </script>
-<style>
+<style scoped lang="scss">
   /**
    ** CSS
    **/
@@ -106,12 +107,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import mixins from './mixins'
+import { myMixins } from './mixins'
 
 // Plugins
 import '@/plugins/plugin-x'
 
 Vue.config.productionTip = false
+
+Vue.mixin(myMixins)
 
 new Vue({
   ...
@@ -119,7 +122,7 @@ new Vue({
 ```
 Desta forma o Bootstrap já está disponível de forma global em toda a aplicação.
 
-Se não for para ser importado **globalmente** e sim em um **componente** específico, importe dentro do ```<script></script>``` dos componentes desejado.
+Se não for para ser importado **globalmente** e sim em um **componente** específico, ao invés de importar no ```main.js``` importe dentro do ```<script></script>``` dos componentes desejado.
 
 ```vue
 <template>
@@ -134,7 +137,7 @@ Se não for para ser importado **globalmente** e sim em um **componente** espec�
   }
 </script>
 
-<style>
+<style scoped lang="scss">
   ...
 </style>
 ```
@@ -294,20 +297,22 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
-import mixins from '@/mixins' // Importando os Mixins
+import { myMixins } from '@/mixins' // Importando os Mixins
 
 Vue.config.productionTip = false
+
+// Usando os Mixins
+Vue.mixin(myMixins)
 
 new Vue({
   router,
   store,
-  mixins, // Usando os Mixins
   render: h => h(App)
 }).$mount('#app')
 ```
 #### Estrutura
 
-A estrutura onde se sencontram os mixins é este:
+A estrutura onde se sencontram os mixins é esta:
 
 ```js
 nome_projeto/
@@ -315,12 +320,7 @@ nome_projeto/
 │   ├── assets/
 │   ├── components/
 │   ├── mixins/
-│   │   ├── computed.js
-│   │   ├── filters.js
-│   │   ├── hooks.js
-│   │   ├── index.js
-│   │   ├── methods.js
-│   │   └── watch.js
+│   │   └── index.js
 │   ├── plugins/
 │   ├── store/
 │   ├── views/
@@ -330,37 +330,14 @@ nome_projeto/
 └── README.md
 ```
 
-Onde temos os seguintes arquivos:
-
-- ```computed.js```: Colocaremos todas as **computeds** que seriam acessíveis de toda a aplicação
-- ```filters.js```: Colocaremos todos os **filters** que seriam acessíveis de toda a aplicação
-- ```hooks.js```: Colocaremos todos os **hooks** que seriam acessíveis de toda a aplicação
+Onde temos os seguinte arquivo:
 - ```index.js```: Este arquivo é utilizado para importar e exportar todos os mixins
-- ```methods.js```: Colocaremos todos os **methods** que seriam acessíveis de toda a aplicação
-- ```watch.js```: Colocaremos todos os **hooks** que seriam acessíveis de toda a aplicação
-
-Tirando o arquivo ```index.js``` todos os outros exportam um objeto.
 
 ```js
-export default {
-  // Conteúdo
-}
-```
-
-O arquivo ```index.js``` tem este conteúdo:
-
-```js
-import hooks from './hooks'
-import methods from './methods'
-import computed from './computed'
-import filters from './filters'
-import watch from './watch'
-
-export default {
-  hooks,
-  methods,
-  computed,
-  filters,
-  watch
+export const myMixins {
+  computed: {
+    // ...
+  }
+  // ...
 }
 ```
