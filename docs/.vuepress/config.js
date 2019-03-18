@@ -33,7 +33,8 @@ module.exports = {
           '/guide/configuracao',
           '/guide/diretivas',
           '/guide/rotas',
-          '/guide/store'
+          '/guide/store',
+          '/guide/i18n'
         ]
       },
       {
