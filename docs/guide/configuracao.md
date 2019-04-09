@@ -68,6 +68,40 @@ export default new Router({
 ```
 
 
+## 404
+Para definir uma rota de **404** basta alterar o arquivo __main.js__ e criar em __src/views/errors__ uma view de erro com o nome **404.vue**.
+
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+
+// Carregamento assíncrono
+const FileOnePageVw = () => import('@/views/FileOnePageVw')
+
+// Pagina de erro 404
+const Error404 = () => import('@/views/errors/404')
+
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: FileOnePageVw
+    },
+    {
+      path: '*',
+      name: 'Error404',
+      component: Error404
+    }
+  ]
+})
+```
+
+
 ## .Vue
 > AlgumaCoisa.vue (Componentes, Fragmentos, Layout e Views)
 ```vue
@@ -186,12 +220,12 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
-// Modules
+// Store Modules
 // Importando os módulos
 import ModuleXpz from './modules/xpz'
 import ModuleAbc from './modules/abc'
 
-// Components
+// Store Components
 // import CompX from '@/components/fragments/x/store'
 
 Vue.use(Vuex)
@@ -229,6 +263,48 @@ export default {
 ```
 
 Agora a ___store dos módulos___ estão separados da ___store da aplicação___, se no futuro um módulo **X** não fizer mais parte da aplicação fica mais fácil desvincular a sua store já que está separada.
+
+O conteúdo da store raiz e dos módulos seguem a mesma estrutura:
+- **State**
+  ```js
+  // state.js
+
+  export default {
+    // Como se fosse o data do componente
+    nomeVariavel: valor
+  }
+  ```
+- **Getters**
+  ```js
+  // getters.js
+
+  export default {
+    'nomeGetter' (state) {
+      return state.nomeStateQueEleRetorna
+    }
+  }
+  ```
+- **Mutations**
+  ```js
+  // mutations.js
+  
+  export default {
+    'ACAO_NOMESTATE' (state, payload) {
+      state.nomeStateQueEleManipula = payload
+    }
+  }
+  ```
+- **Actions**
+  ```js
+  // actions.js
+  
+  export default {
+    mesmoNomeDaMutation (context, payload) {
+      context.commit('NOME_MUTATION', payload)
+    }
+  }
+  ```
+
 
 ## Módulos
 Organizar a aplicação em módulos é a forma mais correta de organização ___(meu ponto de vista)___ , visto que para ter o coração da aplicação separado dos seus orgãos é vital para uma melhor **manutenibilidade**.
@@ -406,9 +482,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `
-          @import "@/scss/main.scss";
-        `
+        data: `@import "~@/scss/main.scss";`
       }
     }
   }
