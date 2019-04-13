@@ -358,7 +358,7 @@ São nada mais nada menos que ___computeds, filters, hooks, methods, watchs e ..
 
 Para que você possa entender, digamos que tenhamos um método/função chamado ```calc``` e queremos usar ele em dois componentes diferentes e que não possuem relação um com o outro.
 
-A forma que fariamos se não fossem os mixins seria para poder usar este método/função nos dois componentes seria criar ela em um componente e depois que estiver funcionando copiar e colar no outro componente. Desta forma temos um trabalho dobrado de criação e manutenção, fora que temos linhas repetidas.
+A forma que fariamos se não fossem os mixins poder usar este método/função nos dois componentes seria criar ela em um componente e depois que estiver funcionando copiar e colar no outro componente. Desta forma temos um trabalho dobrado de criação e manutenção, fora que temos linhas repetidas.
 
 Neste ponto que entram os **mixins**, com eles podemos criar o método/função em apenas um lugar e chama-lo onde quisermos.
 
@@ -406,20 +406,88 @@ nome_projeto/
 └── README.md
 ```
 
-Onde temos os seguintes arquivos:
+Onde temos os seguinte arquivo:
 - ```index.js```: Este arquivo é utilizado para importar e exportar todos os mixins
+
+**Obs:** Os metodos contidos aqui são os que eu costumo usar nos meus projetos.
 
 ```js
 export const myMixins {
   computed: {
-    // ...
+  },
+  filters: {
+  },
+  watch: {
+  },
+  .
+  .
+  .
+  methods: {
+    isReallyArray (value) {
+      if (Array.isArray(value)) {
+        return true
+      } else {
+        return false
+      }
+    },
+    hasProperty (objSearch, valueSearch) {
+      if (typeof (objSearch[valueSearch]) !== 'undefined') {
+        return true
+      } else {
+        return false
+      }
+    },
+    isReallyString (value) {
+      if (typeof value === 'string') {
+        return true
+      } else {
+        return false
+      }
+    },
+    inArray (arraySearch, value) {
+      let result = arraySearch.indexOf(value)
+      if (result === -1) {
+        return false
+      } else {
+        return true
+      }
+    },
+    has (value, key) {
+      if (value[key] !== key) {
+        return true
+      }
+    },
+    isReallyEmpty (value) {
+      if (value === null) {
+        return true
+      }
+
+      if (this.isReallyArray(value) || this.isReallyString(value)) {
+        return value.length === 0
+      }
+
+      for (let key in value) {
+        if (this.has(value, key)) {
+          return false
+        }
+      }
+
+      return true
+    }
+  },
+  filters: {
+    textUpperCase (string) {
+      return string.toUpperCase()
+    },
+    textCapitalizeFirstLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
   }
-  // ...
 }
 ```
 
 ## SASS
-Comece criando um arquivo chamado ```vue.config.js``` na raiz do projeto para configurar as opções de configuração e um diretório chamado *scss* no diretório *src* com os seguintes arquivos.
+Comece criando um arquivo chamado ```vue.config.js``` na raiz do projeto para configurar o sass e um diretório chamado *scss* no diretório *src* com os seguintes arquivos.
 
 >Vale ressaltar que os arquivos (exceto os glob.scss) dos diretórios ___components___, ___layout___, ___pages___, ___themes___ e ___vendor___ são para ilustrar os tipos de arquivos que você vai disponibilizar em cada diretório. Os dos diretórios ___abstracts___ e ___base___ são obrigatórios pois você vai precisar para configurar em todos os projetos, caso não, edite conforme necessitar.
 
@@ -437,6 +505,7 @@ nome_projeto/
 │   │   │   ├── _variables.scss
 │   │   │   └── glob.scss
 │   │   ├── base/
+│   │   │   ├── _general.scss
 │   │   │   ├── _reset.scss
 │   │   │   ├── _typography.scss
 │   │   │   └── glob.scss
@@ -514,7 +583,7 @@ Todos os arquvos (exceto os glob.scss) possuem este conteúdo padrão *+* a sua 
 }
 ```
 
-Podemos observar que temos o nome do arquivo no começo (sem o underline), uma descrição sobre os conteúdos do arquivo, um comentário e logo depois você pode começar a estilizar.
+Podemos observar que temos o nome do arquivo no começo (sem o underline), uma descrição sobre os conteúdo do arquivo, um comentário e logo depois você pode começar a estilizar.
 
 O *glob* por sua vez recebe a importação dos arquivos onde ele esta localizado, então se ele etiver no diretório que guarda os arquivos de componentes ele vai importar os arquivos que forem ser criados.
 

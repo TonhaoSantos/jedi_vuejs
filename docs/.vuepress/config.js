@@ -31,6 +31,7 @@ module.exports = {
           '/guide/introducao',
           '/guide/intalacao',
           '/guide/configuracao',
+          '/guide/data',
           '/guide/diretivas',
           '/guide/rotas',
           '/guide/store',

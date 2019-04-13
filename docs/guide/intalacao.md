@@ -155,11 +155,50 @@ nome_projeto/
 │   │   └── layout
 │   │       └── FileLayoutOneCpLyt.vue
 │   │       └── FileLayoutTwoCpLyt.vue
+│   ├── locales/
+│   │   └── en.json
+│   │   └── pt-BR.json
 │   ├── mixins/
 │   │   └── index.js
 │   ├── plugins/
 │   │   ├── file-plugin-one.js
 │   │   └── file-plugin-two.js
+│   ├── scss/
+│   │   ├── abstracts/
+│   │   │   ├── _functions.scss
+│   │   │   ├── _mixins.scss
+│   │   │   ├── _variables.scss
+│   │   │   └── glob.scss
+│   │   ├── base/
+│   │   │   ├── _general.scss
+│   │   │   ├── _reset.scss
+│   │   │   ├── _typography.scss
+│   │   │   └── glob.scss
+│   │   ├── components/
+│   │   │   ├── _buttons.scss
+│   │   │   └── glob.scss
+│   │   ├── layout/
+│   │   │   ├── _footer.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _grid.scss
+│   │   │   ├── _header.scss
+│   │   │   ├── _navigation.scss
+│   │   │   ├── _sidebar.scss
+│   │   │   └── glob.scss
+│   │   ├── pages/
+│   │   │   ├── _about.scss
+│   │   │   ├── _contact.scss
+│   │   │   ├── _home.scss
+│   │   │   └── glob.scss
+│   │   ├── themes/
+│   │   │   ├── _admin.scss
+│   │   │   ├── _theme.scss
+│   │   │   └── glob.scss
+│   │   ├── vendors/
+│   │   │   ├── _bootstrap.scss
+│   │   │   ├── _jquery-ui.scss
+│   │   │   └── glob.scss
+│   │   └── main.scss
 │   ├── store/
 │   │   ├── modules/
 │   │   │   ├── moduleone/
@@ -191,6 +230,7 @@ nome_projeto/
 │   │   ├── FileOnePageVw.vue
 │   │   └── FileTwoPageVw.vue
 │   ├── App.vue
+│   ├── i18n.js
 │   ├── main.js
 │   └── router.js
 ├── tests/
@@ -203,6 +243,7 @@ nome_projeto/
 │       └── fileComponentName.spec.js
 ├── .editorconfig
 ├── .gitignore
+├── vue.config.js
 ├── package.json
 └── README.md
 ```
@@ -225,8 +266,10 @@ Explicação:
 - ```components``` Localização dos componentes, eu costumo separar no mínimo ___fragments___ e ____layout___
   - ```fragments``` Localização dos fragmentos da página (Botão, Tabela, Input, ...)
   - ```layout``` Localização dos layout's das páginas (Menu, Rodapé, Menu Lateral, ...)
+- ```locales``` Localização dos arquivos de tradução
 - ```mixins``` Localização dos mixins
 - ```plugins``` Localização dos plugins de terceiros ou não (Bootstrap, Apollo, Vue Router, Vuex, ...). Vue Router e Vuex eu não costumo configurar neste diretório, mas segue como exemplo para saber o que poder ser configurado aqui.
+- ```scss``` Localização de todos os arquivos sass
 - ```store``` Localização de toda a loja da aplicação, se existir modulos no projeto as suas lojas ficam separadas em diretórios identificados pelo nome do modulo a que se refere e separados da loja principal do projeto que fica solto neste diretório.
   - ```actions.js``` Arquivo de configuração das ações
   - ```getters.js``` Arquivo de configuração dos getters
@@ -234,6 +277,7 @@ Explicação:
   - ```mutations.js``` Arquivo de configuração das mutações 
   - ```state.js``` Arquivo de configuração dos states
 - ```views``` Localização dos arquivos que representam as páginas do projeto
+- ```i18n.js``` Arquivo de configuração do plugin i18n
 - ```App.vue``` Componente principal da aplicação
 - ```main.js``` Arquivo de inicialização da aplicação
 - ```router.js``` Arquivo de configuração das rotas
