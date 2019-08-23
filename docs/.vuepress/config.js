@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Jedi Cat Vue.js',
-  description: 'Guia de bolso para consultas rápidas de Vue.js',
+  title: 'Jedi Cat Dev',
+  description: 'Guia de bolso para consultas rápidas.',
   markdown: {
     lineNumbers: true
   },
@@ -16,6 +16,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guia', link: '/guide/' },
+      { text: 'Site', link: 'https://vemlavaralouca.com.br' }
       { text: 'GitHub', link: 'https://github.com/TonhaoSantos/jedi_cat_vuejs' }
     ],
     sidebar: [
