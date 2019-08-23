@@ -16,7 +16,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guia', link: '/guide/' },
-      { text: 'Site', link: 'https://vemlavaralouca.com.br' }
+      { text: 'Site', link: 'https://vemlavaralouca.com.br' },
       { text: 'GitHub', link: 'https://github.com/TonhaoSantos/jedi_cat_vuejs' }
     ],
     sidebar: [
