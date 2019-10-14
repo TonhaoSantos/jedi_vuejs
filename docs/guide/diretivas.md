@@ -262,6 +262,11 @@ Esta é a forma que o Vue nos dá para executar ações, invocar eventos.
 
 Você pode omitir o v-on: deixando apenas @nomeEvento
 
+Existem alguns eventos:
+- change
+- blur
+- focus
+
 Existem modificadores de eventos, e a ordem importa ao definirmodificadores encadeados:
 
 - .stop
