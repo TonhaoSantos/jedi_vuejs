@@ -1,6 +1,10 @@
 # Configuração
 
-Vou listar as configurações dos arquivos da estrutura anterior.
+Vou listar as configurações muito básica dos arquivos da estrutura anterior.
+
+Como atualizo constantemente um projeto base que montei, fica dificil descrever arquivo por arquivo, mas o básico sobre alguns estão nesta página.
+
+No final tem um download do projeto base.
 
 ## App.vue
 ```vue
@@ -598,3 +602,6 @@ O *glob* por sua vez recebe a importação dos arquivos onde ele esta localizado
 Na importação não precisamos informar o underline e nem a extensão dos arquivos *.scss*.
 
 Agora as estilizações que forem sendo criadas estarão disponíveis globalmente na aplicação, sem a necessidade de termos que importar toda vez nos componentes e afins. Podemos acessar variáveis, funções, mixins, ...
+
+## Download
+[Template Base](/base_template_vuejs2.zip)
