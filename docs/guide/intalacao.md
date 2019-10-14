@@ -136,7 +136,7 @@ O projeto começará a ser criado e finalizando siga as instruções fornecida.
 
 
 ## Estrutura projeto
-Durante a minha caminha com **Vue.js** pude obter diversar formas de estruturar os projetos permitindo uma melhor **manutenibilidade** e **legibilidade** do código e arquivos.
+Durante a minha caminhada com **Vue.js** pude obter diversar formas de estruturar os projetos permitindo uma melhor **manutenibilidade** e **legibilidade** do código e arquivos.
 
 Vale ressaltar que esta estrutura é um padrão que eu utilizo e não um padrão obrigatório.
 
