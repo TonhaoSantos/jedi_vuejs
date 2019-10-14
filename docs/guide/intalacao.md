@@ -145,6 +145,30 @@ Os projetos que desenvolvo sempre utilizam Vue, Vue Router, Vuex, Teste Unitári
 ```js
 nome_projeto/
 ├── public/
+│   ├── img/
+│   │   └── icons/
+│   │       ├── android-chrome-192x192.png
+│   │       ├── android-chrome-512x512.png
+│   │       ├── apple-touch-icon.png
+│   │       ├── apple-touch-icon-60x60.png
+│   │       ├── apple-touch-icon-76x76.png
+│   │       ├── apple-touch-icon-120x120.png
+│   │       ├── apple-touch-icon-152x152.png
+│   │       ├── apple-touch-icon-180x180.png
+│   │       ├── favicon-16x16.png
+│   │       ├── favicon-32x32.png
+│   │       ├── msapplication-icon-144x144.png
+│   │       ├── mstile-150x150.png
+│   │       └── safari-pinned-tab.svg
+│   ├── _redirects
+│   ├── browserconfig.xml
+│   ├── crossdomain.xml
+│   ├── favicon.ico
+│   ├── humans.txt
+│   ├── index.html
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
 │   ├── assets/
 │   │   └── img.png
@@ -155,6 +179,8 @@ nome_projeto/
 │   │   └── layout
 │   │       └── FileLayoutOneCpLyt.vue
 │   │       └── FileLayoutTwoCpLyt.vue
+│   ├── directives/
+│   │   └── index.js
 │   ├── locales/
 │   │   └── en.json
 │   │   └── pt-BR.json
@@ -199,6 +225,8 @@ nome_projeto/
 │   │   │   ├── _jquery-ui.scss
 │   │   │   └── glob.scss
 │   │   └── main.scss
+│   ├── searches/
+│   │   └── index.js
 │   ├── store/
 │   │   ├── modules/
 │   │   │   ├── moduleone/
@@ -232,7 +260,9 @@ nome_projeto/
 │   ├── App.vue
 │   ├── i18n.js
 │   ├── main.js
-│   └── router.js
+│   ├── router.js
+│   ├── registerServiceWorker.js
+│   └── service-worker.js
 ├── tests/
 │   ├── e2e/
 │   │   ├── custom-assertions/
@@ -241,8 +271,12 @@ nome_projeto/
 │   │       └── fileComponentName.js
 │   └── unit/
 │       └── fileComponentName.spec.js
+├── .env.development
+├── .env.production
 ├── .editorconfig
+├── .browserslistrc
 ├── .gitignore
+├── server.js
 ├── vue.config.js
 ├── package.json
 └── README.md
@@ -254,6 +288,11 @@ Explicação:
 - ```package.json``` Arquivo de configuração do projeto
 - ```.gitignore``` Arquivo de configuração do Git
 - ```.editorconfig``` Arquivo de configuração da IDE (Veja mais [aqui](https://editorconfig.org "EditorConfig"))
+- ```.env.development``` Arquivo para alocar as variaveis de ambiente local
+- ```.env.production``` Arquivo para alocar as variaveis de ambiente de produção (usado no build)
+- ```.browserslistrc``` Arquivo onde especificamos quais navegadores suportamos diminuindo os arquivos de configuração no diretório do projeto
+- ```server.js``` Arquivo de configuração de um servidor básico para servir o projeto em produção e não obter erro 404 já que ele não é um **SSR**
+- ```vue.config.js``` Arquivo de configuração do vue, dificilmente se altera este arquivo
 - ```tests``` Localização dos arquivos de testes
   - ```tests > e2e``` Arquivos de configuração dos testes Nightwatch
     - ```tests > e2e > custom-assertions``` Localização dos scripts de teste visual do Nightwatch
@@ -261,23 +300,38 @@ Explicação:
     - ```tests > e2e > specs``` Localização dos scripts de teste unitários do Nightwatch
   - ```tests > unit``` Arquivos de configuração dos testes unitários
 - ```public``` Localização dos arquivos públicos (Favicons, Index.html, Img's, CSS's, Javascript's, Jquery, ...)
+  - ```img``` Localização das imagens publicas sem processamento (diferente das localizados no assets)
+    - ```icons``` Localização dos icones usados pelos navegadores ao salvar uma página na area de trabalho, favicons e afins. Os descritos mais acima são os mais usados no geral **(Meu ponto de vista)**
+  - ```_redirects``` Arquivo usado para servir o projeto no [Netlify](http://netlify.com), esta plataforma não utiliza o **server.js** e sim este arquivo
+  - ```browserconfig.xml``` Arquivo de configuração do browser
+  - ```crossdomain.xml``` Arquivo de configuração de cross domain
+  - ```favicon.ico``` Favicon padrão no formato .ico
+  - ```humans.txt``` Arquivo de agradecimentos, descritivo da aplicação e da equipe do prejeto
+  - ```index.html``` Arquivo raiz da aplicação
+  - ```manifest.json``` Arquivo de configuração do PWA
+  - ```robots.txt``` Arquivo de configuração para os bots
+  - ```sitemap.xml``` Arquivo de configuração do sitemap
 - ```src``` Arquivos do projeto
   - ```assets``` Localização dos arquivos ativos, ao serem processados terão a mesma URL desde que o conteúdo seja o mesmo, aproveitando também o cache do navegador (Favicons, Img's, CSS's, Javascript's, Jquery, ...)
-- ```components``` Localização dos componentes, eu costumo separar no mínimo ___fragments___ e ____layout___
-  - ```fragments``` Localização dos fragmentos da página (Botão, Tabela, Input, ...)
-  - ```layout``` Localização dos layout's das páginas (Menu, Rodapé, Menu Lateral, ...)
-- ```locales``` Localização dos arquivos de tradução
-- ```mixins``` Localização dos mixins
-- ```plugins``` Localização dos plugins de terceiros ou não (Bootstrap, Apollo, Vue Router, Vuex, ...). Vue Router e Vuex eu não costumo configurar neste diretório, mas segue como exemplo para saber o que poder ser configurado aqui.
-- ```scss``` Localização de todos os arquivos sass
-- ```store``` Localização de toda a loja da aplicação, se existir modulos no projeto as suas lojas ficam separadas em diretórios identificados pelo nome do modulo a que se refere e separados da loja principal do projeto que fica solto neste diretório.
-  - ```actions.js``` Arquivo de configuração das ações
-  - ```getters.js``` Arquivo de configuração dos getters
-  - ```index.js``` Arquivo utilizado para vincular todos os arquivos deste diretório e os arquivos index das lojas dos modulos
-  - ```mutations.js``` Arquivo de configuração das mutações 
-  - ```state.js``` Arquivo de configuração dos states
-- ```views``` Localização dos arquivos que representam as páginas do projeto
-- ```i18n.js``` Arquivo de configuração do plugin i18n
-- ```App.vue``` Componente principal da aplicação
-- ```main.js``` Arquivo de inicialização da aplicação
-- ```router.js``` Arquivo de configuração das rotas
+  - ```components``` Localização dos componentes, eu costumo separar no mínimo ___fragments___ e ____layout___
+    - ```fragments``` Localização dos fragmentos da página (Botão, Tabela, Input, ...)
+    - ```layout``` Localização dos layout's das páginas (Menu, Rodapé, Menu Lateral, ...)
+  - ```diretives``` Localização das diretivas personalizadas
+  - ```locales``` Localização dos arquivos de tradução
+  - ```mixins``` Localização dos mixins
+  - ```plugins``` Localização dos plugins de terceiros ou não (Bootstrap, Apollo, Vue Router, Vuex, ...). Vue Router e Vuex eu não costumo configurar neste diretório, mas segue como exemplo para saber o que poder ser configurado aqui.
+  - ```scss``` Localização de todos os arquivos sass
+  - ```searches``` Localização das consultas as API's
+  - ```store``` Localização de toda a loja da aplicação, se existir modulos no projeto as suas lojas ficam separadas em diretórios identificados pelo nome do modulo a que se refere e separados da loja principal do projeto que fica solto neste diretório.
+    - ```actions.js``` Arquivo de configuração das ações
+    - ```getters.js``` Arquivo de configuração dos getters
+    - ```index.js``` Arquivo utilizado para vincular todos os arquivos deste diretório e os arquivos index das lojas dos modulos
+    - ```mutations.js``` Arquivo de configuração das mutações 
+    - ```state.js``` Arquivo de configuração dos states    
+  - ```views``` Localização dos arquivos que representam as páginas do projeto
+  - ```i18n.js``` Arquivo de configuração do plugin i18n
+  - ```App.vue``` Componente principal da aplicação
+  - ```main.js``` Arquivo de inicialização da aplicação
+  - ```router.js``` Arquivo de configuração das rotas
+  - ```registerServiceWorker.js``` Arquivo de registro dos trabalhadores do PWA
+  - ```service-worker.js``` Arquivo de configuração das dos trabalhadores do PWA
