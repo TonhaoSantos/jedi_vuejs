@@ -604,4 +604,4 @@ Na importação não precisamos informar o underline e nem a extensão dos arqui
 Agora as estilizações que forem sendo criadas estarão disponíveis globalmente na aplicação, sem a necessidade de termos que importar toda vez nos componentes e afins. Podemos acessar variáveis, funções, mixins, ...
 
 ## Download
-[Template Base](/base_template_vuejs2.zip)
+Faça o download do projeto base que eu criei para os meus projetos clicando aqui: [Template Base](/base_template_vuejs2.zip)
