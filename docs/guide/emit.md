@@ -24,7 +24,7 @@ export default {
     MyComponent
   },
   methods: {
-    myComponent (refValue, eventValue) {
+    componenteValue (refValue, eventValue) {
       if (refValue === 'myComponent') {
         this.value = eventValue
       }
