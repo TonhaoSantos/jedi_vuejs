@@ -43,8 +43,10 @@ module.exports = {
           '/guide/filters',
           '/guide/watch',
           '/guide/rotas',
+          '/guide/emit',
           '/guide/store',
-          '/guide/i18n'
+          '/guide/i18n',
+          '/guide/axios'
         ]
       },
       {
