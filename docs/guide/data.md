@@ -1,5 +1,5 @@
 # Data
-Data nada mais é do que o local onde declaramos as nossas ***"*** __variável__ ***"***.
+Data nada mais é do que o local onde declaramos as nossas __variáveis__.
 
 E como tal, temos *string*, *numero*, *boolean*, *array*, *…* e todos os outros que o javascript nos fornece.
 

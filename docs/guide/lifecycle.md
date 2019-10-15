@@ -1,5 +1,5 @@
 # Lifecycle hooks
-No vue é possivel acessar o clico de vida dos componentes, são eles:
+No vue é possivel acessar o ciclo de vida dos componentes, são eles:
 - beforeCreate: Antes de disponibilizar os metodos e variaveis</li>
 - created: Depois de disponibilizar os metodos e variaveis, verifica se existe elemento e templates</li>
 - beforeMount: Antes de montar tudo</li>

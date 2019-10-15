@@ -267,7 +267,7 @@ Existem alguns eventos:
 - blur
 - focus
 
-Existem modificadores de eventos, e a ordem importa ao definirmodificadores encadeados:
+Existem modificadores de eventos, e a ordem importa ao definir modificadores encadeados:
 
 - .stop
 - .prevent
@@ -400,7 +400,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 
 
-// Pode usar a sintaxe de obleto dentro da de array
+// Pode usar a sintaxe de objeto dentro da de array
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
@@ -510,7 +510,7 @@ Se eu passar o link:
 </div>
 ```
 
-Basicamente são espaços reservados para outros conteudos, mesmo um elemente permitindo passar slots, não é obrigatorio passar só pq ele permite, você que escolhe, é apenas um espaço reservado para aquele item, se ele não for passado **OK**.
+Basicamente são espaços reservados para outros conteudos, mesmo um elemento permitindo passar slots, não é obrigatorio passar só pq ele permite, você que escolhe, é apenas um espaço reservado para aquele item, se ele não for passado **OK**.
 
 Outra coisa, o slot passado pode ser um texto, tag, outro componente, ...
 
