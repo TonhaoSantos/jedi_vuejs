@@ -25,7 +25,7 @@ export default {
       nome: 'Tonhão'
     }
   },
-  methods: {
+  watch: {
     nome(valorNovo, valorAntigo) {
       console.log('valorNovo', valorNovo)
       console.log('valorAntigo', valorAntigo)
