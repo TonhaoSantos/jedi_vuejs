@@ -8,9 +8,9 @@ module.exports = {
     searchMaxSuggestions: 10,
     serviceWorker: {
       updatePopup: true,
-      updatePopup: { 
-        message: "Novo conteúdo disponível.", 
-        buttonText: "Atualizar" 
+      updatePopup: {
+        message: "Novo conteúdo disponível.",
+        buttonText: "Atualizar"
       }
     },
     nav: [
@@ -28,37 +28,39 @@ module.exports = {
       {
         title: 'Vue.js',
         children: [
-          '/guide/introducao',
-          '/guide/intalacao',
-          '/guide/configuracao',
-          '/guide/data',
-          '/guide/interpolacao',
-          '/guide/diretivas',
-          '/guide/abreviacao',
-          '/guide/lifecycle',
-          '/guide/components',
-          '/guide/props',
-          '/guide/computed',
-          '/guide/methods',
-          '/guide/filters',
-          '/guide/watch',
-          '/guide/rotas',
-          '/guide/emit',
-          '/guide/store',
-          '/guide/i18n',
-          '/guide/axios'
+          '/guide/vuejs/introducao',
+          '/guide/vuejs/intalacao',
+          '/guide/vuejs/configuracao',
+          '/guide/vuejs/data',
+          '/guide/vuejs/interpolacao',
+          '/guide/vuejs/diretivas',
+          '/guide/vuejs/abreviacao',
+          '/guide/vuejs/lifecycle',
+          '/guide/vuejs/components',
+          '/guide/vuejs/props',
+          '/guide/vuejs/computed',
+          '/guide/vuejs/methods',
+          '/guide/vuejs/filters',
+          '/guide/vuejs/watch',
+          '/guide/vuejs/rotas',
+          '/guide/vuejs/emit',
+          '/guide/vuejs/store',
+          '/guide/vuejs/i18n',
+          '/guide/vuejs/axios'
+        ]
+      },
+      {
+        title: 'BEM',
+        children: [
+          '/guide/bem/introducao'
         ]
       },
       {
         title: 'Storybook.js',
         children: [
-          '/guide/introducao',
-          '/guide/intalacao',
-          '/guide/diretivas',
-          '/guide/rotas',
-          '/guide/store'
+          '/guide/storybook/introducao'
         ]
       }
     ]
-}
+  }
 }
