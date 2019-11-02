@@ -56,6 +56,12 @@ module.exports = {
         ]
       },
       {
+        title: 'GIT',
+        children: [
+          '/guide/git/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
