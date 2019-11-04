@@ -75,6 +75,12 @@ module.exports = {
         ]
       },
       {
+        title: 'Versionamento Semantico',
+        children: [
+          '/guide/versionamento/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'

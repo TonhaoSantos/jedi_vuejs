@@ -40,7 +40,7 @@ Os conteudos são:
 
 
 ## package.json
-````js
+```js
 {
   "name": "nome-projeto",
   "version": "1.0.0",
@@ -91,7 +91,7 @@ Os conteudos são:
 
 
 ## gulpfile.js
-````js
+```js
 var gulp               = require('gulp'),
     rename             = require("gulp-rename"),
     dest               = require('gulp-dest'),
@@ -254,14 +254,14 @@ gulp.task('minificaImg', function(){
 
 
 ## sass.scss
-````css
+```js
 @import 'variables';
 
 // Estilização
 ```
 
 ## Usar
-Para rodar algum comando basta digitar no terminal ````gulp nomeTask```.
+Para rodar algum comando basta digitar no terminal ```gulp nomeTask```.
 
 ## Mais
 Outras coisas legais:
