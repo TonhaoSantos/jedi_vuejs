@@ -68,6 +68,13 @@ module.exports = {
         ]
       },
       {
+        title: 'Task Runner',
+        children: [
+          '/guide/taskrunner/introducao',
+          '/guide/taskrunner/gulp'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
