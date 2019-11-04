@@ -62,6 +62,12 @@ module.exports = {
         ]
       },
       {
+        title: 'Mock',
+        children: [
+          '/guide/mock/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
