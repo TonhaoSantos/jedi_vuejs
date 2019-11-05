@@ -515,4 +515,287 @@ Basicamente são espaços reservados para outros conteudos, mesmo um elemento pe
 Outra coisa, o slot passado pode ser um texto, tag, outro componente, ...
 
 ## Diretiva personalizada
-É um pouco longa para falar aqui, estou preparando um arquivo separado.
+Como podemos ver as diretivas são atributos especiais com o prefixo **v-**
+
+Elas tem o papel de aplicar reativamente efeitos colaterais ao DOM quando o seu valor for alterado.
+
+Vimos que o **Vue** fornece uma ampla variedade de diretivas para usarmos.
+
+### NOME
+Para criar uma diretiva o mais basico que precisamos informar é um nome, somente informando um nome ela não aceita argumentos e nem possui modificadores.
+
+Se não for possivel passarmos um valor ela basicamente nao será muito flexível mas pode ter alguma funcionalidade do **DOM**.
+
+O modelo mais basico de uma diretiva seria o **v-else**.
+
+Um exemplo de diretiva basica poderia ser este:
+
+```html
+<app-navigation v-sticky> </app-navigation>
+```
+
+### VALOR
+Podemos passar um valor para um diretiva, por exemplo o **v-else**:
+
+```html
+<div v-if="mostrar">Pode ser mostrado</div>
+```
+
+Poderiamos passar uma **string**:
+
+```html
+<div v-fruta="'banana'"></div>
+```
+
+Que seria mais ou menos igual ao v-html.
+
+
+### ARGUMENTOS
+Diretivas personalizadas podem receber um argumento indicado por dois-pontos após o nome da diretiva.
+
+Um exemplo:
+
+```html
+<app-navigation v-sticky:bottom> </app-navigation>
+```
+
+Nome da diretiva é **sticky** e o argumento **button**.
+
+As diretivas podem ter apenas um argumento.
+
+
+
+### MODIFICADORES
+São correções especiais indicadas por um ponto que indicam que uma diretiva deve ser vinculada de alguma maneira especial.
+
+Serve para controlar como a diretiva se comporta.
+```html
+<span v-formatar.sublinhado>Texto</span>
+```
+
+Neste exemplo o modificador aplica um sublinhado ao texto. Podemos usar varios modificadores encadeados ao mesmo tempo.
+```html
+<span v-formatar.negrito.destacado.sublinhado>Texto</span>
+```
+
+Neste outro exemplo o texto estará em negrito, destacado e com sublinhado.
+
+
+### HOOKS
+O VUE dispobiliza algumas hooks para usarmos nas diretivas.
+
+
+### CRIANDO
+Podemos criar diretivas globalmente na nossa aplicacao por meio do **Vue.directive** e passando um nome para ela:
+
+- **bind** - isso ocorre uma vez quando a diretiva é anexada ao elemento.
+- **inserted** - isso ocorre quando o elemento é inserido no DOM pai
+- **update** - isso ocorre quando o elemento é atualizado, mas as crianças ainda não foram atualizadas
+- **componentUpdated** - isso ocorre quando o componente e os filhos foram atualizados
+- **unbind** - isto ocorre quando a diretiva é removida
+
+E cada um deles possuem os argumentos **el** , **binding** e **vnode** argumentos disponíveis para eles:
+
+- **el** - o elemento em que a ligação está
+- **binding** - um objeto que contém os argumentos que são passados ​​para os ganchos. Existem muitos argumentos disponíveis, incluindo name, value, oldValue, expression, arg e modifiers.
+- **vnode** - permite referir-se diretamente ao nó no DOM virtual, se necessário. Tanto a **binding** quanto o **vnode** devem ser tratados como somente leitura.
+- **update** e **componentUpdated** - ambos expõem um argumento adicional chamado **oldvnode**. O argumento oldvnode é usado para diferenciar entre o valor mais antigo passado e o valor mais recente. **bind** e **update** são os mais úteis dos cinco.
+
+
+```js
+// No main.js
+Vue.directive ('sticky');
+```
+
+Para usar esta diretiva podemos fazer assim:
+```html
+<app-navigation v-sticky></app-navigation>
+```
+
+### EXEMPLOS
+_Deixa o componente fixo na tela_
+```html
+<app-navigation v-sticky></app-navigation>
+```
+```js
+Vue.directive('sticky',
+    function(el, binding, vnode) {
+        el.style.position = 'fixed';
+    }
+))
+```
+
+_Define a cor do texto para laranja_
+```html
+<h1 v-orange>Ola mundo</h1>
+```
+```js
+Vue.directive("orange", function(el, binding, vnode) {
+    el.style.color = "orange";
+})
+```
+
+
+
+_Passando uma cor para a diretiva_
+```html
+<h1 v-color="'red'">{{ msg }}</h1>
+<h1 v-color="'blue'">{{ msg }}</h1>
+<h1 v-color="'#ffff00'">{{ msg }}</h1>
+```
+```js
+Vue.directive("color", function(el, binding, vnode) {
+    el.style.color = binding.value;
+})
+```
+
+_Passando argumento para definir se vai ficar fixo no top ou bottom da tela. Se não for passado nada vai ser no top_
+```html
+<!-- (top -->
+<app-navigation v-sticky></app-navigation>
+
+<!-- (bottom -->
+<app-navigation v-sticky:bottom></app-navigation>
+```
+```js
+Vue.directive("sticky", function(el, binding, vnode) {
+  const loc = binding.arg === "bottom" ? "bottom" : "top";
+  el.style.position = "fixed";
+  el.style[loc] = 0;
+  if (loc === "bottom") {
+    el.style.background = "burlywood";
+  } else {
+    el.style.background = "#7e7e7e";
+  }
+})
+```
+
+```html
+<div v-example a="hi"></div>
+```
+```js
+Vue.directive('example', {
+  params: ['a'],
+  bind: function () {
+    console.log(this.params.a) // -> "hi"
+  }
+})
+```
+
+
+_Modificadores_
+```html
+<span v-format.underline>guide</span>
+<span v-format.bold>configure / customize</span>
+<span v-format.highlight>check out</span>
+<h3 v-format.highlight.bold.underline>Installed CLI Plugins</h3>
+```
+```js
+Vue.directive("format", function(el, binding, vnode) {
+  const modifiers = binding.modifiers;
+  if (modifiers.underline) {
+    el.style.textDecoration = "underline";
+  }
+  if (modifiers.bold) {
+    el.style.fontWeight = "bold";
+  }
+  if (modifiers.highlight) {
+    el.style.background = "#ffff00";
+  }
+})
+```
+
+
+
+_Hooks em ação_
+```html
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+
+    <div v-hook-demo>{{ count }}</div>
+    <button @click="++count;">Update</button>
+  </div>
+</template>
+<script>
+export default {
+  name: "About",
+  data() {
+    return {
+      count: 0
+    }
+  }
+}
+</script>
+```
+```js
+Vue.directive("hook-demo", {
+  bind(el, binding, vnode) {
+    console.log("bind");
+  },
+  inserted(el, binding, vndoe) {
+    console.log("inserted");
+  },
+  updated(el, binding, vnode) {
+    console.log("updated");
+  },
+  componentUpdated(el, binding, vnode, oldVnode) {
+    console.log("componentUpdated");
+  }
+})
+```
+
+```js
+Vue.directive('phone', {
+  bind (el, binding, vnode) {
+    console.log('bind')
+    console.log('bd elemento: ', el)
+    console.log('bd binding: ', binding)
+    console.log('bd valor: ', vnode)
+    const modifiers = binding.modifiers
+
+    if (modifiers.mask) {
+      el.mask('####-####', { placeholder: '0000-0000' })
+      el.change(function () {
+        let value = this.val()
+        el.set(value)
+      })
+    }
+  },
+  update (el, binding, vnode) {
+    console.log('update')
+    console.log('up elemento: ', el)
+    console.log('up binding: ', binding)
+    console.log('up valor: ', vnode)
+    const modifiers = binding.modifiers
+
+    if (modifiers.mask) {
+      el.mask('####-####', { placeholder: '0000-0000' })
+      el.change(function () {
+        let value = this.val()
+        el.set(value)
+      })
+    }
+  }
+})
+```
+```js
+Vue.directive('date', {
+    'twoWay': true,
+    'bind': function () {
+        var self = this
+
+        self.mask = "99/99/9999"
+        $(self.el).mask(self.mask, { placeholder:"MM/DD/YYYY" })
+        $(self.el).change(function() {
+            var value = $(this).val()
+            self.set(value)
+        })
+    },
+    'unbind': function () {
+        var self = this
+
+        $(self.el).unmask(self.mask)
+    }
+})
+```
