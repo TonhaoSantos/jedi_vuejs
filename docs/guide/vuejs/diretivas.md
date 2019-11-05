@@ -584,10 +584,6 @@ Neste outro exemplo o texto estará em negrito, destacado e com sublinhado.
 ### HOOKS
 O VUE dispobiliza algumas hooks para usarmos nas diretivas.
 
-
-### CRIANDO
-Podemos criar diretivas globalmente na nossa aplicacao por meio do **Vue.directive** e passando um nome para ela:
-
 - **bind** - isso ocorre uma vez quando a diretiva é anexada ao elemento.
 - **inserted** - isso ocorre quando o elemento é inserido no DOM pai
 - **update** - isso ocorre quando o elemento é atualizado, mas as crianças ainda não foram atualizadas
@@ -601,6 +597,9 @@ E cada um deles possuem os argumentos **el** , **binding** e **vnode** argumento
 - **vnode** - permite referir-se diretamente ao nó no DOM virtual, se necessário. Tanto a **binding** quanto o **vnode** devem ser tratados como somente leitura.
 - **update** e **componentUpdated** - ambos expõem um argumento adicional chamado **oldvnode**. O argumento oldvnode é usado para diferenciar entre o valor mais antigo passado e o valor mais recente. **bind** e **update** são os mais úteis dos cinco.
 
+
+### CRIANDO
+Podemos criar diretivas globalmente na nossa aplicacao por meio do **Vue.directive** e passando um nome para ela:
 
 ```js
 // No main.js
