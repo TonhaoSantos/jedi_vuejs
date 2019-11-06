@@ -101,13 +101,13 @@ module.exports = {
         ]
       },
       {
-        title: 'cli',
+        title: 'CLI',
         children: [
           '/guide/cli/introducao'
         ]
       },
       {
-        title: 'googleextensao',
+        title: 'Google Extensao',
         children: [
           '/guide/googleextensao/introducao'
         ]
