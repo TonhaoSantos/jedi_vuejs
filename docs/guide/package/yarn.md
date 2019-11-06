@@ -15,3 +15,8 @@ Agora que já esta logado basta digitar no terminal:
 ```js
 yarn publish
 ```
+
+Para obter informacões sobre o seu pacote:
+```js
+yarn info meu-novo-projeto
+```

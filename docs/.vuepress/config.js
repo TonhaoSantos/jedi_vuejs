@@ -81,6 +81,14 @@ module.exports = {
         ]
       },
       {
+        title: 'package',
+        children: [
+          '/guide/package/introducao',
+          '/guide/package/npm',
+          '/guide/package/yarn'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
