@@ -1,4 +1,4 @@
-# Publicacao
+# YARN
 
 Para publicar no yarn é preciso ter uma conta, apos ter criado seguir os passos.
 

@@ -1,4 +1,4 @@
-# Publicacao
+# NPM
 
 Para publicar no npm é preciso ter uma conta, apos ter criado seguir os passos.
 
