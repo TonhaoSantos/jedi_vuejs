@@ -29,6 +29,8 @@ git clone git://github.com/schacon/Projeto.git NomeDoDiretorioEspecifico
 // Juntando varios comandos com duplo &&
 git add . && git commmit -m "alguma coisa"
 
+// Atualizar url do remote localmente
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 
 git status      // Status do repositorio
 git branch         // Ver branchs locais
