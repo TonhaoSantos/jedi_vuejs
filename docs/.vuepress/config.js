@@ -101,6 +101,18 @@ module.exports = {
         ]
       },
       {
+        title: 'cli',
+        children: [
+          '/guide/cli/introducao'
+        ]
+      },
+      {
+        title: 'googleextensao',
+        children: [
+          '/guide/googleextensao/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
