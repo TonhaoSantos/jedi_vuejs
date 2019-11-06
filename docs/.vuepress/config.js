@@ -89,6 +89,12 @@ module.exports = {
         ]
       },
       {
+        title: 'cdn',
+        children: [
+          '/guide/cdn/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
