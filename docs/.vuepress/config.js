@@ -81,7 +81,7 @@ module.exports = {
         ]
       },
       {
-        title: 'package',
+        title: 'Package',
         children: [
           '/guide/package/introducao',
           '/guide/package/npm',
@@ -89,7 +89,7 @@ module.exports = {
         ]
       },
       {
-        title: 'cdn',
+        title: 'CDN',
         children: [
           '/guide/cdn/introducao'
         ]

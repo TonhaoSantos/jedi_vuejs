@@ -6,4 +6,4 @@ Não precisa configurar nada, ele pode ser usado para **NPM**, **GITHUB** e **WO
 
 Basta entrar no site e informar o nome do _PACOTE_ que já vai ser criado o **CDN**.
 
-Exemplor: https://www.jsdelivr.com/package/npm/@vemlavaraloucagamers/test-publish
+Exemplor: [aqui](https://www.jsdelivr.com/package/npm/@vemlavaraloucagamers/test-publish)
