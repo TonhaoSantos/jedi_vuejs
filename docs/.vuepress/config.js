@@ -95,6 +95,12 @@ module.exports = {
         ]
       },
       {
+        title: 'Vunerabilidade',
+        children: [
+          '/guide/vunerabilidade/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
