@@ -30,7 +30,7 @@ E dentro dele um arquivo com o nome **db.json** e um objeto como este por exempl
 ```
 
 Para poder rodar o mock aponte para o diretorio dele e rode:
-```js`
+```js
 json-server --port 3004 --watch db.json
 ```
 
