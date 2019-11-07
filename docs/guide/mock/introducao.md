@@ -31,7 +31,7 @@ E dentro dele um arquivo com o nome **db.json** e um objeto como este por exempl
 
 Para poder rodar o mock aponte para o diretorio dele e rode:
 ```js`
-json-server --watch db.json
+json-server --port 3004 --watch db.json
 ```
 
 Vai ser disponibilizado um servidor no endereco ```localhost:3000``` com os seguintes metodos GET, POST, PUT, PATCH e DELETE. você vai poder usar como se fosse uma API real (Para teste apenas).

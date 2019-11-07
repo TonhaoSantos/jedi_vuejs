@@ -266,3 +266,12 @@ Para rodar algum comando basta digitar no terminal ```gulp nomeTask```.
 ## Mais
 Outras coisas legais:
 - Usar o watch do proprio gulp.
+```js
+gulp.task('default', ['taskx', 'tasky']);
+
+//Observador
+gulp.task('aqqq', function() {
+  gulp.watch('./dev/styles/**/*', ['taskw', 'taskm']);
+  gulp.watch('./dev/app/**/*', ['tasku']);
+});
+```
