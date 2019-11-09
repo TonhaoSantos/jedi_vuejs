@@ -9,6 +9,7 @@ Para usar o sistema de modulos da store que eu uso é da seguinte forma:
 </template>
 
 <script>
+// Modo mapeado (Map Helpers)
 import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -20,6 +21,12 @@ export default {
   computed: {
     ...mapState('NomeComponenteDeclaradoState', ['nomeStates']),
     ...mapGetters('NomeComponenteDeclaradoState', ['nomeGetters'])
+
+    // Tambem pode ser como objeto
+    ...mapGetters('NomeComponenteDeclaradoState', {
+        algumaCoisa: nomeGetters,
+        outraCoisa: nomeGetters
+    })
   },
   methods: {
     ...mapActions('NomeComponenteDeclaradoState', ['nomeActions'])
