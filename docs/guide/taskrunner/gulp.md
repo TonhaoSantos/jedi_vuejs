@@ -8,7 +8,7 @@ Eu costumo usar o **GULP** para:
 - Minificar IMAGENS
 
 Para instalar o gulp global:
-```js`
+```js
 npm install --global gulp-cli
 
 // ou
@@ -17,7 +17,7 @@ yarn add --global gulp-cli
 ```
 
 Depois instale como dependencia do projeto
-```js`
+```js
 npm install --save-dev gulp
 
 // ou
