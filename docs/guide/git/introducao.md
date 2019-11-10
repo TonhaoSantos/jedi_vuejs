@@ -71,4 +71,10 @@ git tag -d v1.0 && git push --delete origin v1.0     // Excluir uma tag especifi
 git tag -a v0.1 -m "Mensagem"   // Passando uma mensagem
 git push origin --tags   // Enviar todas as tags
 git push origin v1.0  // Enviar tag especifica
+
+// Remove arquivo da branch remota
+git rm --cached nomeArquivo
+git rm --cached -r nomeArquivo
+git commit -m "Mensagem"
+git push origin nomedabranchremota
 ```
