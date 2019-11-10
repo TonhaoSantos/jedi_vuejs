@@ -13,7 +13,7 @@ npm install --global gulp-cli
 
 // ou
 
-yarn add --global gulp-cli
+yarn add global gulp-cli
 ```
 
 Depois instale como dependencia do projeto
