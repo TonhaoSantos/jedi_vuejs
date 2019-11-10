@@ -10,10 +10,6 @@ Eu costumo usar o **GULP** para:
 Para instalar o gulp global:
 ```js
 npm install --global gulp-cli
-
-// ou
-
-yarn add global gulp-cli
 ```
 
 Depois instale como dependencia do projeto
