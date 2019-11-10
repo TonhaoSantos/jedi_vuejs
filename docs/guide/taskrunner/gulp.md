@@ -7,6 +7,30 @@ Eu costumo usar o **GULP** para:
 - concatenar, minificar e verificar erros de JavaScript
 - Minificar IMAGENS
 
+Para instalar o gulp global:
+```js`
+npm install --global gulp-cli
+
+// ou
+
+yarn add --global gulp-cli
+```
+
+Depois instale como dependencia do projeto
+```js`
+npm install --save-dev gulp
+
+// ou
+
+yarn add -D gulp-cli
+```
+
+Para saber se esta instalado:
+```js
+gulp --version
+```
+
+
 Minha estrutura de projeto basico para usar todas estas funções é:
 ```js
 nome_projeto_gulp/
