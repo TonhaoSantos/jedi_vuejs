@@ -77,3 +77,7 @@ Na loja, clicando em **Previa** da para visualizar a aparencia da extensão e se
 Vá na **Chrome Web Store** e procure a extensão pelo título (pode para aparecer na loja).
 
 Agora resta apenas compartilhar.
+
+## Minhas extensões
+
+https://gitlab.com/vlalg/vlalg-valid-fake-generator
