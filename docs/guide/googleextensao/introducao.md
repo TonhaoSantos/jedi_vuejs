@@ -80,4 +80,4 @@ Agora resta apenas compartilhar.
 
 ## Minhas extensões
 
-https://gitlab.com/vlalg/vlalg-valid-fake-generator
+[vlalg-valid-fake-generator](https://gitlab.com/vlalg/vlalg-valid-fake-generator)
