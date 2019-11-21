@@ -108,6 +108,8 @@ export default new Router({
 
 ## .Vue
 > AlgumaCoisa.vue (Componentes, Fragmentos, Layout e Views)
+
+A construção é nesta ordem:
 ```vue
 <template>
   <!-- HTML -->
@@ -119,6 +121,40 @@ export default new Router({
   /**
    ** CSS
    **/
+</style>
+```vue
+
+E a estrutura é este (mesmo que eu não use tudo costumo manter no arquivo):
+```
+<template>
+  <div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Nome',
+  metaInfo: {},
+  beforeCreate () {},
+  created () {},
+  beforeMount () {},
+  mounted () {},
+  beforeUpdate () {},
+  updated () {},
+  beforeDestroy () {},
+  destroyed () {},
+  data () {
+    return {}
+  },
+  components: {},
+  computed: {},
+  methods: {},
+  filters: {},
+  watch: {}
+}
+</script>
+
+<style scoped lang="scss">
 </style>
 ```
 

@@ -220,9 +220,7 @@ No **index.html** costuma ter a seguinte configuração:
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="text/javascript">
-      
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
 ```
