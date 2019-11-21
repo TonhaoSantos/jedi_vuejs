@@ -124,7 +124,7 @@ A construção é nesta ordem:
 </style>
 ```
 
-E a estrutura é este (mesmo que eu não use tudo costumo manter no arquivo):
+E a estrutura é esta (mesmo que eu não use tudo costumo manter no arquivo):
 
 ```vue
 <template>
