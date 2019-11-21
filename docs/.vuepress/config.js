@@ -114,6 +114,12 @@ module.exports = {
         ]
       },
       {
+        title: 'Snippets',
+        children: [
+          '/guide/snippets/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
