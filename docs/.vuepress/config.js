@@ -31,6 +31,7 @@ module.exports = {
           '/guide/vuejs/introducao',
           '/guide/vuejs/intalacao',
           '/guide/vuejs/configuracao',
+          '/guide/vuejs/inline',
           '/guide/vuejs/data',
           '/guide/vuejs/interpolacao',
           '/guide/vuejs/diretivas',
