@@ -122,10 +122,11 @@ A construção é nesta ordem:
    ** CSS
    **/
 </style>
-```vue
+```
 
 E a estrutura é este (mesmo que eu não use tudo costumo manter no arquivo):
-```
+
+```vue
 <template>
   <div>
   </div>
