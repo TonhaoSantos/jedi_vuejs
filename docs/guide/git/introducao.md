@@ -77,4 +77,9 @@ git rm --cached nomeArquivo
 git rm --cached -r nomeArquivo
 git commit -m "Mensagem"
 git push origin nomedabranchremota
+
+// Remover alteracoes da branch e colocar em outra
+git stash
+git checkout nomeBranchNova
+git stash pop
 ```
