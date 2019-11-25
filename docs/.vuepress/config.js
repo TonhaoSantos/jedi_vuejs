@@ -120,6 +120,12 @@ module.exports = {
         ]
       },
       {
+        title: 'JavaScript',
+        children: [
+          '/guide/javascript/introducao'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
