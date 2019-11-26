@@ -82,4 +82,14 @@ git push origin nomedabranchremota
 git stash
 git checkout nomeBranchNova
 git stash pop
+
+// Renomear uma branch local
+git checkout nomeAtual
+git branch -m novoNome
+
+// Renomear uma branch remota
+git checkout nomeAtual
+git branch -m novoNome
+git push origin --delete nomeAntigo
+git push origin -u novoNome
 ```
