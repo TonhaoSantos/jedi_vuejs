@@ -144,6 +144,7 @@ export default {
   updated () {},
   beforeDestroy () {},
   destroyed () {},
+  props: {},
   data () {
     return {}
   },
