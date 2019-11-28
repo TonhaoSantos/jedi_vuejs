@@ -118,3 +118,49 @@ Ou separando por **grupo** e **ação**
 - PesquisaBotaoLimpar.vue
 - PesquisaBotao.vue
 - PesquisaInput.vue
+
+
+
+## Globalmente
+
+Para declarar um componente globalmente, no arquivo main.js
+```js
+import Vue from 'vue'
+...
+import Componente from '@/components/Componente'
+
+Vue.component('nome-componente', Componente)
+
+...
+
+new Vue({
+  ...
+  render: h => h(App),
+}).$mount('#app');
+```
+
+Para nao sobrecarregar o **main.js** podemos criar um arquivo chamado **index.js** no diretorio **components** e colocar este conteudo
+
+```js
+import Vue from 'vue'
+import Componente from '@/components/Componente'
+import Componente2 from '@/components/Componente2'
+
+Vue.component('nome-componente', Componente)
+Vue.component('nome-componente2', Componente2)
+```
+
+E no main.js importar este arquivo
+
+```js
+import Vue from 'vue'
+...
+import '@/components'
+
+...
+
+new Vue({
+  ...
+  render: h => h(App),
+}).$mount('#app');
+```
