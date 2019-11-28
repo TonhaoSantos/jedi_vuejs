@@ -459,6 +459,10 @@ export default {
         : this.$router.push('/')
     },
     rotaProgramatica () {
+    
+      // usar o this. na frente do router
+      // push seria o mesmo que o :to
+
       // literal string path
       router.push('home')
 
