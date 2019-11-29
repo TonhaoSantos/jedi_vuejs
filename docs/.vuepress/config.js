@@ -126,6 +126,14 @@ module.exports = {
         ]
       },
       {
+        title: 'Web Scraping',
+        children: [
+          '/guide/webscraping/introducao',
+          '/guide/webscraping/siteestatico',
+          '/guide/webscraping/sitedinamico'
+        ]
+      },
+      {
         title: 'Storybook.js',
         children: [
           '/guide/storybook/introducao'
