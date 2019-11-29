@@ -1,6 +1,6 @@
 # Site Dinamico e SPA
 
-## Exemplo
+## Exemplo 1
 Para inicio do projeto, criar um diretorio para o mesmo e dentro criar dele digitar ```yarn init```.
 
 Criar um arquivo **index.js**
@@ -44,7 +44,7 @@ let getData = html => {
 }
 ```
 
-## Exemplo - Mostra como abrir um popup
+## Exemplo 2 - Mostra como abrir um popup
 
 ```js
 const Nightmare = require('nightmare');
