@@ -61,34 +61,6 @@ No package.json incluir um script que rode o comando ```yarn index.js```.
 
 Ao finalizar sera gerado um csv na area de trabalho
 
-## Exemplo 2 - Site Estatico
-```js
-const axios = require('axios');
-const cheerio = require('cheerio');   // Igual ao Jquery, só que para nodejs
-
-const url = 'https://algumsite.com.br';
-
-axios.get(url)
-  .then(response => {
-    let getData = html => {
-      data = [];
-      const $ = cheerio.load(html);
-      $('table.itemlist tr td:nth-child(3)').each((i, elem) => {
-        data.push({
-          title : $(elem).text(),
-          link : $(elem).find('a.storylink').attr('href')
-        });
-      });
-      console.log(data);
-    }
-    
-    getData(response.data)
-  })
-  .catch(error => {
-    console.log(error)
-  })
-```
-
 ## Exemplo 2
 Para inicio do projeto, criar um diretorio para o mesmo e dentro criar dele digitar ```yarn init```.
 
