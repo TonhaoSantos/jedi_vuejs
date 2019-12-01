@@ -35,6 +35,7 @@ module.exports = {
           '/guide/vuejs/data',
           '/guide/vuejs/interpolacao',
           '/guide/vuejs/diretivas',
+          '/guide/vuejs/css-scoped',
           '/guide/vuejs/abreviacao',
           '/guide/vuejs/lifecycle',
           '/guide/vuejs/components',

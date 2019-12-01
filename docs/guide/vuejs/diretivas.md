@@ -20,12 +20,14 @@ Algumas diretivas podem receber parâmetros, argumentos dinâmicos e modificador
 - v-else
 - v-else-if
 - v-for
-- v-on
 - v-bind
+- v-bind:class
+- v-bind:style
 - v-model
+- v-on
+- v-cloak
 - v-slot
 - v-pre
-- v-cloak
 
 
 ## v-text
@@ -513,6 +515,24 @@ Se eu passar o link:
 Basicamente são espaços reservados para outros conteudos, mesmo um elemento permitindo passar slots, não é obrigatorio passar só pq ele permite, você que escolhe, é apenas um espaço reservado para aquele item, se ele não for passado **OK**.
 
 Outra coisa, o slot passado pode ser um texto, tag, outro componente, ...
+
+
+## v-pre
+Nos permite ignorar a compilação para o elemento em questão e todos os seus filhos.
+
+Podemos usar para imprimir o mustache.
+
+Se usarmos muitas vezes esta tecnica pode nos permitir aceleração na compilação.
+
+Se quisermos imprimir por exemplo este mustache **{{ nomeDoUsuario }}**, podemos fazer assim:
+
+```html
+<h1 v-pre>{{ nomeDoUsuario }}</h1>
+```
+
+Logo a saida será um **H1** com o conteudo __{{ nomeDoUsuario }}__ dentro.
+
+
 
 ## Diretiva personalizada
 Como podemos ver as diretivas são atributos especiais com o prefixo **v-**
