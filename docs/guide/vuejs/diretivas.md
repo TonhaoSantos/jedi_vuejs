@@ -530,7 +530,7 @@ Se quisermos imprimir por exemplo este mustache **{{ nomeDoUsuario }}**, podemos
 <h1 v-pre>{{ nomeDoUsuario }}</h1>
 ```
 
-Logo a saida será um **H1** com o conteudo __nomeDoUsuario__ dentro.
+Logo a saida será um **H1** com o conteudo {{__nomeDoUsuario__}} dentro.
 
 
 
