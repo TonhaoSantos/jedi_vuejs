@@ -45,3 +45,7 @@ export default {
 ```
 
 Um uso comum seria nada transformar texto em minusculo ou maiusculos.
+
+Uma informacao muito importante é que o **this** não pode ser acessado de dentro do filters, ele pode não informar nenhum erro como não fazer a acao esperada.
+
+Os filtros são projetados principalmente para fazer transformacões em textos. Para transformações complexas deveremos usar **computeds**.
