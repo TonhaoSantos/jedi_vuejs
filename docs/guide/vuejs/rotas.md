@@ -506,3 +506,31 @@ export default {
 <style lang="scss" scoped>
 </style>
 ```
+
+## Navigation Guards
+
+Temos tambem uma implementacao muito importante para usarmos, o **navigation guards**.
+
+Com ele podemos carregar conteúdo específicos para cada tipo de usuarios validando por permissões e impedindo que informacoes privadas sejam aessadas por um usuario não autorizado.
+
+Ele fornece funcionalidade adicional referente à forma como as rotas são resolvidas.
+
+Existem três categorias principais de proteões no **Vue Router**
+
+- **Global Guards** _proteções globais_: são chamados quando qualquer navegação é acionada (ou seja, quando as URLs mudam)
+- **Per Route Guards** _proteções por rota_: chamados quando a rota associada é chamada (ou seja, quando uma URL corresponde a uma rota específica)
+- **In Component Guards** _proteções em componentes_: são chamados quando um componente em uma rota é criado, atualizado ou destruído
+
+Em cada categoria encontramos métodos adicionais que oferecem um controle mais refinado das rotas de aplicativos.
+
+- Guardas Globais
+    - beforeEach: ação antes de entrar em qualquer rota (sem acesso ao **this** escopo)
+    - beforeResolve: ação antes da confirmação da navegação, mas depois das proteções no componente (o mesmo que beforeEach com acesso ao this escopo)
+    - afterEach: ação após a rota ser resolvida (não pode afetar a navegação)
+- Protetores por rota
+    - beforeEnter: ação antes de entrar em uma rota específica (diferente dos guardas globais, isso tem acesso ao this escopo)
+- Protetores de componentes
+    - beforeRouteEnter: ação antes da confirmação da navegação e antes da criação do componente (sem acesso ao this escopo)
+    - beforeRouteUpdate: ação após a chamada de uma nova rota que usa o mesmo componente
+    - beforeRouteLeave: ação antes de sair de uma rota
+

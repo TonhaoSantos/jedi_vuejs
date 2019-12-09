@@ -46,6 +46,7 @@ module.exports = {
           '/guide/vuejs/watch',
           '/guide/vuejs/rotas',
           '/guide/vuejs/emit',
+          '/guide/vuejs/plugin',
           '/guide/vuejs/store',
           '/guide/vuejs/i18n',
           '/guide/vuejs/axios'

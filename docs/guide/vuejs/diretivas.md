@@ -818,3 +818,81 @@ Vue.directive('date', {
     }
 })
 ```
+
+### Armazenamento (Bonus)
+Uma coisa que podemos fazer tambem é criar um diretorio para concentrar todas as diretivas por arquivos individuais facilitando assim a manutencao.
+
+Entao para este exemplo, dentro do diretorio **directives** criar um arquivo chamado **background-directive.js** com o seguinte conteudo:
+
+
+```js
+const defaultBackgroundColor = "#86bbff";
+
+const BackgroundDirective. = {
+  bind(el, binding, vnode) {
+    const color = binding.value || defaultBackgroundColor;
+
+    if (el) {=
+      el.style.backgroundColor = color;
+    }
+  }
+};
+
+export default BackgroundDirective;
+```
+
+Neste momento criamos uma diretiva, para melhor exemplificar vou criar só mais uma de teste.
+
+Ainda dentro do diretorio **directives** criar agora um arquivo chamado **red-color-directive.js** com o seguinte conteudo:
+
+
+```js
+const defaultColor = "#86bbff";
+
+const RedColorDirective. = {
+  bind(el, binding, vnode) {
+    const color = binding.value || defaultColor;
+
+    if (el) {=
+      el.style.color = color;
+    }
+  }
+};
+
+export default RedColorDirective;
+```
+
+Beleza, agora vamos no **mais.js** para declarar estas diretivas.
+
+```js
+import Vue from "vue";
+import App from "./App.vue";
+import BackgroundDirective from "@/directives/background-directive.js";
+import RedColorDirective from "@/directives/red-color-directive.js";
+
+const Directives = {
+  "background-dir": BackgroundDirective,
+  "color-dir": RedColorDirective
+};
+
+Object.keys(Directives).forEach(name => {
+    Vue.directive(name, Directives[name]);
+});
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: h => h(App)
+}).$mount("#app");
+```
+
+Para usar as diretivas agora, em algum algum compotente/view:
+
+
+```html
+<span v-background-dir>guide</span>
+<span v-background-dir="'0f0'">guide</span>
+
+<span v-color-dir>guide</span>
+<span v-color-dir="'0f0'">guide</span>
+```
