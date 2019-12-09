@@ -175,8 +175,28 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 ```
 
+No **main.js** posso chamar assim:
+
+```js
+import Vue from "vue";
+import App from "./App.vue";
+import PluginX from "@/plugins/nomePlugin";
 
 
+// Nao passano opcao
+Vue.use(PluginX);
+
+// Passano opcao
+Vue.use(PluginX, {
+  job: "Web Dev"
+});
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: h => h(App)
+}).$mount("#app");
+```
 
 
 
