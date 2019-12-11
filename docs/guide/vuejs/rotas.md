@@ -515,7 +515,7 @@ Com ele podemos carregar conteúdo específicos para cada tipo de usuarios valid
 
 Ele fornece funcionalidade adicional referente à forma como as rotas são resolvidas.
 
-Existem três categorias principais de proteões no **Vue Router**
+Existem três categorias principais de protecões no **Vue Router**
 
 - **Global Guards** _proteções globais_: são chamados quando qualquer navegação é acionada (ou seja, quando as URLs mudam)
 - **Per Route Guards** _proteções por rota_: chamados quando a rota associada é chamada (ou seja, quando uma URL corresponde a uma rota específica)
@@ -534,3 +534,226 @@ Em cada categoria encontramos métodos adicionais que oferecem um controle mais 
     - beforeRouteUpdate: ação após a chamada de uma nova rota que usa o mesmo componente
     - beforeRouteLeave: ação antes de sair de uma rota
 
+
+Devemos saber quando é util utilizar em um cenário X.
+
+Para rastrear visualizações poderiamos usar **afterEach** que é acionado quando a rota e componentes filhos são totalmente carregados. Se quisermos por exemplo fazer uma consulta em uma API antes de carregar a página e armazenar estes dados no **VUEX** poderiamos usar o **beforeEnter**.
+
+Para proteger rotas por permissao de usuarios poderiamos usar o **beforeEnter**.
+
+Podemos setar por rota especifica:
+
+```js
+const router = new VueRouter({
+  routes: [
+    ...
+    {
+      path: "/x",
+      name: "x",
+      component: X,
+      beforeEnter(to, from, next) {
+        // Logica
+      }
+  ]
+})
+```
+
+Ou globalmente
+
+```js
+const router = new VueRouter({
+  routes: [
+      ...
+  ]
+})
+
+router.beforeEnter(async (to, from, next) => {
+    ...
+})
+```
+
+Uma dica é usar o **async**, nem precisa explicar o motivo de usar. Tambem usar o o **try/catch** para evitar o carregamento prematuro antes do carregamento de alguma coisa, neste exemplo, o vuex.
+
+```js
+async beforeEach(to, from, next) => {
+    try {
+        var hasPermission = await store.dispatch("auth/hasPermission");
+        if (hasPermission) {
+            next()
+        }
+    } catch (e) {
+        next({ name: "Home" })
+    }
+}
+
+const router = new VueRouter({
+  routes: [
+      ...
+  ]
+})
+```
+
+As entranhas do **beforeEnter** não é muito diferente guardas, aceita três parâmetros **to**, **from** e **next**.
+- **to**: A rota para onde se esta indo
+- **from**: A rota de onde esta vindo
+- **next**: Funcão para resolver a rota com exito
+
+Geralmente o **next** é chamado sem argumentos
+```js
+async beforeEach(to, from, next) => {
+    next()
+}
+```
+
+Mas fazendo assim estamos dizendo que o estado da rota é de sucesso sempre. Se quisermos garantir que usuarios não autorizados tenham um destino alternativo podemos redirecionar ele adequadamente passando o nome da rota no **next**
+```js
+async beforeEach(to, from, next) => {
+    next({ name: "Home" })
+}
+```
+
+Se quisermos verificar pela **vuex** se o usuario logado possui permissao
+```js
+
+router.beforeEnter(async (to, from, next) => {
+  if (store.getters["auth/hasPermission"]) {
+    next()
+  } else {
+    next({ name: "Login" });
+  }
+})
+```
+
+Ao redirecionar o usuario que não possui privilegios precisamos informar por qual motivo ele foi para uma pagina X ou que tenha voltado, caso contrario ele vai ficar tentando N vezes até saber o real motivo de voltar. Fora isso precisamos depois de ele efetuar o login por exemplo, voltar para a pagina onde estava querendo ir.
+
+Podemos obter a url completa de onde ele estava querendo ir por meio do **to.fullPath** para voltarmos ele no futuro apos um login por exemplo, o **to** possui um conteudo muito valioso que podemos usar ao nosso favor, vale dar um **console.log** nela para saber o que ele nos permite obter.
+```js
+async beforeEach(to, from, next) => {
+    try {
+        var hasPermission = await store.dispatch("auth/hasPermission");
+        if (hasPermission) {
+            next()
+        }
+    } catch (e) {
+        next({
+            name: "Login",
+            query: { redirectFrom: to.fullPath }
+        })
+    }
+}
+
+const router = new VueRouter({
+  routes: [
+      ...
+  ]
+})
+```
+
+Estamos passando via **query string** a rota que ele vindo, para verificarmos em login se ele possui esta variavel para avisar ele alguma coisa podemos fazer assim:
+```js
+const router = new VueRouter({
+  routes: [
+    ...
+    {
+      path: "/login",
+      name: "Login",
+      component: X,
+      beforeEnter(to, from, next) {
+        if (to.query.redirectFrom) {
+            // Faz alguma coisa
+        }
+      }
+  ]
+})
+```
+
+Para acessar a instancia do vue podemos fazer assim:
+```js
+const router = new VueRouter({
+  routes: [
+    ...
+    {
+      path: "/login",
+      name: "Login",
+      component: X,
+      beforeEnter(to, from, next) {
+        next(vm => {
+            console.log(vm)
+        })
+      }
+  ]
+})
+```
+
+Entao, ao entrar na tela de login podemos obter a query e informar o usuario
+```js
+<template>
+  <div>
+    <span>{{ errorMsg }}</span>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      errorMsg: null
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    if (to.query.redirectFrom) {
+      next(vm => {
+        vm.errorMsg = "Desculpe, você não tem o acesso certo para acessar a rota solicitada"
+      })
+    } else {
+      next()
+    }
+  }
+}
+</script>
+```
+
+O que podemos setar são os **meta** dados nas rotas para difinirmos se pode ser vista por todos ou somente adm. A meta não se limita somente a isso, podemos usar para passar o que quisermos.
+```js
+const router = new VueRouter({
+  routes: [
+    ...
+    {
+      path: "/login",
+      name: "Login",
+      component: X,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/adm',
+      component: adm,
+      props: false,
+      meta: {
+        requiresAuth: true
+      },
+      children: [
+        {
+          path: 'w',
+          name: 'w',
+          component: w,
+          meta: {
+            userAdmin: true
+          }
+        },
+        {
+          path: 't',
+          name: 't',
+          component: t,
+          meta: {
+            userClient: true
+          }
+        }
+      ]
+    },
+
+  ]
+})
+```
