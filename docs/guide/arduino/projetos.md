@@ -125,6 +125,8 @@ void loop()
 >
 > Se for anodo comum onde é 0 fica 255 e onde é 255 fica 0
 
+![Led RGB](/led_rgb.png)
+
 - Tensão de operação (vermelho): 2 a 2,5VDC
 - Tensão de operação (verde): 3,2 a 3,6VDC
 - Tensão de operação (azul): 3,2 a 3,6VDC
@@ -133,9 +135,6 @@ void loop()
 Como resistor para cada uma das 3 pernas nao comuns podemos ter de 220 Ohms.
 
 O valor do analogWrite vai de 0 até 255, 0 é mais claro (invisivel) e 255 é mais escuro.
-
-![Led RGB](/rgb_led.png)
-
 
 Codigo uma cor unica
 ```c
