@@ -122,6 +122,8 @@ void loop()
 > As portas no arduino tem que ser as com o ~ (PWM)
 >
 > Se a perna comum for catodo é só ligar no GND e caso seja anodo deve ser ligdo no 5v sem resistor
+>
+> Se for anodo comum onde é 0 fica 255 e onde é 255 fica 0
 
 - Tensão de operação (vermelho): 2 a 2,5VDC
 - Tensão de operação (verde): 3,2 a 3,6VDC
@@ -130,48 +132,90 @@ void loop()
 
 Como resistor para cada uma das 3 pernas nao comuns podemos ter de 220 Ohms.
 
+O valor do analogWrite vai de 0 até 255, 0 é mais claro (invisivel) e 255 é mais escuro.
+
 ![Led RGB](/rgb_led.png)
 
 
-
-Codigo
+Codigo uma cor unica
 ```c
-//Carrega a biblioteca LiquidCrystal
-#include <LiquidCrystal.h>
- 
-//Define os pinos que serão utilizados para ligação ao display
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
- 
+int pinoR = 11;
+int pinoG = 10;
+int pinoB = 19;
+  
 void setup()
 {
-  //Define o número de colunas e linhas do LCD
-  lcd.begin(16, 2);
+  pinMode(pinoR, OUTPUT);
+  pinMode(pinoG, OUTPUT);
+  pinMode(pinoB, OUTPUT);
 }
- 
+
 void loop()
 {
-  //Limpa a tela
-  lcd.clear();
-  //Posiciona o cursor na coluna 3, linha 0;
-  lcd.setCursor(3, 0);
-  //Envia o texto entre aspas para o LCD
-  lcd.print("Linha 1");
-  lcd.setCursor(3, 1);
-  lcd.print("Linha 2");
-  delay(5000);
-   
-  //Rolagem para a esquerda
-  for (int posicao = 0; posicao < 3; posicao++)
-  {
-    lcd.scrollDisplayLeft();
-    delay(300);
-  }
-   
-  //Rolagem para a direita
-  for (int posicao = 0; posicao < 6; posicao++)
-  {
-    lcd.scrollDisplayRight();
-    delay(300);
-  }
+  analogWrite(pinoR, 255);
+  delay(1000);
+  analogWrite(pinoR, 0);
+  delay(1000);
+}
+```
+
+
+Codigo blink
+```c
+int pinoR = 11;
+int pinoG = 10;
+int pinoB = 19;
+  
+void setup()
+{
+  pinMode(pinoR, OUTPUT);
+  pinMode(pinoG, OUTPUT);
+  pinMode(pinoB, OUTPUT);
+}
+
+void loop()
+{
+  analogWrite(pinoR, 255);
+  delay(1000);
+  analogWrite(pinoR, 0);
+  analogWrite(pinoG, 255);
+  delay(1000);
+  analogWrite(pinoG, 0);
+  analogWrite(pinoB, 255);
+  delay(1000);
+  analogWrite(pinoB, 0);
+}
+```
+
+
+Codigo anodo comum
+```c
+boolean anodo_comum = true;
+int pinoR = 11;
+int pinoG = 10;
+int pinoB = 19;
+  
+void setup()
+{
+  pinMode(pinoR, OUTPUT);
+  pinMode(pinoG, OUTPUT);
+  pinMode(pinoB, OUTPUT);
+}
+
+void loop()
+{
+  setCor(255, 0, 0);
+}
+
+void setCor(int vermelho, int verde, int azul) {
+    if (anodo_comum == true) {
+        vermelho = 255 - 0;
+        verde = 255 - 0;
+        azul = 255 - 0;
+    }
+
+    analogWrite(pinoR, vermelho);
+    analogWrite(pinoG, verde);
+    analogWrite(pinoB, azul);
 }
 ```
