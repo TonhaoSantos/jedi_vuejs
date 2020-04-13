@@ -70,7 +70,7 @@ void loop()
 
 
 ## Barra Grafica de Led
-> Caso nao tenha um bargraph, este tutorial mostra como montar um com leds mesmo.
+> Caso nao tenha um bargraph, este tutorial mostra como montar um com leds. O sistema é o mesmo.
 
 ![Barra Grafica](/Bargraph.png)
 
