@@ -141,7 +141,7 @@ Codigo uma cor unica
 ```c
 int pinoR = 11;
 int pinoG = 10;
-int pinoB = 19;
+int pinoB = 9;
   
 void setup()
 {
@@ -164,7 +164,7 @@ Codigo blink
 ```c
 int pinoR = 11;
 int pinoG = 10;
-int pinoB = 19;
+int pinoB = 9;
   
 void setup()
 {
@@ -190,10 +190,10 @@ void loop()
 
 Codigo anodo comum
 ```c
-boolean anodo_comum = true;
+boolean anodo_comum = false;
 int pinoR = 11;
 int pinoG = 10;
-int pinoB = 19;
+int pinoB = 9;
   
 void setup()
 {
@@ -205,6 +205,11 @@ void setup()
 void loop()
 {
   setCor(255, 0, 0);
+  delay(1000);
+  setCor(0, 255, 0);
+  delay(1000);
+  setCor(0, 0, 255);
+  delay(1000);
 }
 
 void setCor(int vermelho, int verde, int azul) {
