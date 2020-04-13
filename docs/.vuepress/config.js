@@ -26,6 +26,14 @@ module.exports = {
         ]
       },
       {
+        title: 'Arduino',
+        children: [
+          '/guide/arduino/intruducao',
+          '/guide/arduino/arduino',
+          '/guide/arduino/projetos'
+        ]
+      },
+      {
         title: 'Vue.js',
         children: [
           '/guide/vuejs/introducao',
