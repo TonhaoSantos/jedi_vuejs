@@ -69,10 +69,11 @@ void loop()
 
 
 
-## BARRA GRAFICA DE LED
+## Barra Grafica de Led
 > Caso nao tenha um bargraph, este tutorial mostra como montar um com leds mesmo.
 
-![LCD 16X2](bargraph.png)
+![Barra Grafica](bargraph.png)
+![An image](/FluxoVuejs.png)
 
 Codigo
 ```c
