@@ -15,8 +15,8 @@ R = (Ve - Vl) / il
 
 **Exemplo**
 
-Para uma tensao de entrada de 5v e um LED vermelho que trabalha com tensao de entrada
+Para uma tensao de entrada de 5v e um LED X que trabalha com tensao de entrada de 2v e 20mA.
 
 R = (5 - 2) / 0.02 = 150 Ohms
 
-Caso nao encontre o resistor com 150 Ohms, pode ser usado um com OMHS um pouco maior ou um um pouco menor se nao tiver um maior.
+Caso nao encontre o resistor com 150 Ohms, pode ser usado um com OMHS um pouco maior ou um pouco menor se nao tiver um maior.

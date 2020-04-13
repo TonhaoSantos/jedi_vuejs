@@ -3,7 +3,7 @@
 ## LCD 16x2
 > Alguns LCD's podem nao vir com um resistor no pino 15(A/Led 1), podemos usar dois resistores de **165 Ohms** sem serie
 
-![Image description](/LCD_16x2.png)
+![Image description](/lcd_16_2.png)
 
 Ligacoes
 | Pino LCD  |  Funcao  |  Ligacao  |
