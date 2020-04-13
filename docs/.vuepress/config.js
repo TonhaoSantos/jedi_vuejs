@@ -29,6 +29,7 @@ module.exports = {
         title: 'Arduino',
         children: [
           '/guide/arduino/introducao',
+          '/guide/arduino/eletronica',
           '/guide/arduino/arduino',
           '/guide/arduino/projetos'
         ]
