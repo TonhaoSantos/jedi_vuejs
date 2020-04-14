@@ -489,6 +489,10 @@ void loop()
 ![Display 7 Segmentos](/7segmentos1.png)
 ![Display 7 Segmentos](/7segmentos2.png)
 
+Com o ponto
+
+![Display 7 Segmentos](/7segmentos3.png)
+
 - Tensão de operação: 5VDC
 - Corrente de operação: 30mA
 - Potência dissipada: 60mW
@@ -649,5 +653,48 @@ void loop() {
      ligaSegmentosDisplay(contador); //FAZ A CONTAGEM
   }
   delay(2000); //INTERVALO DE 2 SEGUNDOS
+}
+```
+
+
+## Luminosidade
+- Luminosidade: LDR (ligado com um resistor de 1k)
+
+![Luminosidade](/luminosidade.png)
+
+```js
+int valor = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  valor = analogRead(A0);
+  Serial.println(valor);
+  delay(500);
+}
+```
+
+
+## Temperatura
+- Temperatura: NTC 10K (ligado com um resistor de 10k)
+
+
+```js
+int valor = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  valor = analogRead(A0);
+  Serial.println(valor);
+  delay(500);
 }
 ```
