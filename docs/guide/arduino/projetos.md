@@ -446,3 +446,30 @@ void loop()
   }
 }
 ```
+
+Exemplo alterando a claridade do led
+![Potenciomentro](/Potenciomentro2.png)
+
+```js
+int leitura1 = 0;
+int leitura2 = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+  leitura1 = analogRead(A0);
+  
+  // O +2 da (leitura2 + 2) é para pegar a variacao pra mais ou menos que existe até com ele parado
+  if (leitura1 > (leitura2 + 2) || leitura1 < (leitura2 - 2)) {
+    // Salvando o proximo ciclo do loop se nao nunca roda
+    leitura2 = leitura1;
+
+    Serial.println(leitura1);
+    delay(100);
+  }
+}
+```
