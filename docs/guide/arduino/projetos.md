@@ -371,9 +371,27 @@ void setup() {
   	pinMode(pinoBuzzer, OUTPUT);
 }
 void loop(){
+  // Emitir tom
   tone(pinoBuzzer, 2500, 100);
+
   delay(1000);
+
+  // Parar tom
+  noTone(pinoBuzzer);
 }
 ```
+
+```c
+int pinoBuzzer = 8;
+
+void setup() {
+  	pinMode(pinoBuzzer, OUTPUT);
+}
+void loop(){
+  tone(pinoBuzzer, 1500);
+  delay(200);
+  tone(pinoBuzzer, 2000);
+  delay(200);
+}
 
 Exemplo da musica do [star wars](https://create.arduino.cc/projecthub/HiHiHiHiiHiiIiH/star-wars-on-a-buzzer-0814f2)
