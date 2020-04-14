@@ -909,3 +909,11 @@ void controlaLed3() {
   }
 }
 ```
+
+
+## Expandindo portas (CI c/ funcao Shift Register)
+> Ligando com 3 portas digitais no arduino ele permite controlar 8 portas digitais no modo OUTPUT
+> 
+> O capacitor na porta 12 é para se existir alguma variacao na porta nao vai interferir na comunicao
+
+![Shift Register](/shiftregister.png)
