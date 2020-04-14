@@ -688,15 +688,19 @@ void loop()
 
 ![Temperatura](/temperatura.png)
 
-Download da [biblioteca](/Thermistor.zip)
-
 - Tensão de operação: 3,3 ou 5VDC
 - Faixa de medição: -55°C a 125° celsius
 - Precisão: ±1%
 
+Download da [biblioteca](/Thermistor.zip).
+
+Para instalar a biblioteca, Sketch > Incluir Biblioteca > Adicionar .zip
+
 
 ```js
-int valor = 0;
+#include <Thermistor.h>
+
+Thermistor temp(A0);
 
 void setup()
 {
@@ -705,8 +709,10 @@ void setup()
 
 void loop()
 {
-  valor = analogRead(A0);
-  Serial.println(valor);
-  delay(500);
+  int temperatura = temp.getTemp();
+  Serial.print("Temperatura: ");
+  Serial.print(temperatura);
+  Serial.println(" C");
+  delay(1000);
 }
 ```
