@@ -501,7 +501,7 @@ int segD = 5;
 int segE = 6;
 int segF = 7;
 int segG = 8;
-int segG = 8;
+int segDot = 9;
 
 void setup()
 {
@@ -512,6 +512,7 @@ void setup()
   pinMode(segE, OUTPUT);
   pinMode(segF, OUTPUT);
   pinMode(segG, OUTPUT);
+  pinMode(segDot, OUTPUT);
 }
  
 void loop()
@@ -523,5 +524,65 @@ void loop()
   digitalWrite(segE, HIGH);
   digitalWrite(segF, HIGH);
   digitalWrite(segG, HIGH);
+  digitalWrite(segDot, 0);
+}
+```
+
+Exemplo contador de 0 - 9
+```js
+int a = 2, b = 3, c = 4, d = 5, e = 6, f = 7, g = 8;
+
+// Recebe a quantidade de linhas e colunas que a matriz vai ter
+// 10 linhas pq podemos fazer de 0 - 9
+// 7 pq temos 7 variaveis/segmentos para ligar
+int num[10][7]{
+  {a,b,c,d,e,f}, // numero 0
+  {b,c}, // numero 1
+  {a,b,d,e,g}, // numero 2
+  {a,b,c,d,g}, // numero 3
+  {b,c,f,g}, // numero 4
+  {a,c,d,f,g}, // numero 5
+  {a,c,d,e,f,g}, // numero 6
+  {a,b,c}, // numero 7
+  {a,b,c,d,e,f,g}, // numero 8
+  {a,b,c,f,g} // numero 9
+};
+
+void setup()
+{
+  pinMode(a, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(c, OUTPUT);
+  pinMode(d, OUTPUT);
+  pinMode(e, OUTPUT);
+  pinMode(f, OUTPUT);
+  pinMode(g, OUTPUT);
+}
+ 
+void loop()
+{
+  for (int i = 0; i < 10; i++) {
+    apaga();
+    numero(i);
+    delay(1000);
+  }
+}
+
+// Apagar todos os segmentos do display
+void apaga() {
+  digitalWrite(a, HIGH);
+  digitalWrite(b, HIGH);
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH);
+  digitalWrite(e, HIGH);
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+}
+
+// Formar um numero
+void numero(int n) {
+  for (int i = 0; i < 7; i++) {
+  	digitalWrite(num[n][i], LOW);
+  }
 }
 ```
