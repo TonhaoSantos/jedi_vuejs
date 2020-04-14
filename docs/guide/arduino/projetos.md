@@ -658,6 +658,8 @@ void loop() {
 
 
 ## Luminosidade
+> Nao é polarizado
+
 - Luminosidade: LDR (ligado com um resistor de 1k)
 
 ![Luminosidade](/luminosidade.png)
@@ -680,7 +682,17 @@ void loop()
 
 
 ## Temperatura
+> Nao é polarizado
+
 - Temperatura: NTC 10K (ligado com um resistor de 10k)
+
+![Temperatura](/temperatura.png)
+
+Download da [biblioteca](/Thermistor.zip)
+
+- Tensão de operação: 3,3 ou 5VDC
+- Faixa de medição: -55°C a 125° celsius
+- Precisão: ±1%
 
 
 ```js
