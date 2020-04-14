@@ -224,8 +224,12 @@ void setCor(int vermelho, int verde, int azul) {
 }
 ```
 
+
+
 ## Chave Táctil ou Push Button
 > Conduz somente quando está pressionado
+
+![Led RGB](/push_button.png)
 
 - Tensão máxima: 12VDC
 - Corrente máxima: 50mA
