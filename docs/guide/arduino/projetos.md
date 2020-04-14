@@ -483,6 +483,8 @@ void loop()
 
 ## Display 7 Segmentos
 > De cada lado possui 5 pinos, o que fica no meio é o positivo/negativo (olhar na descricao quando comprar qual é a configuracao dele)
+>
+> Pode se usar um resistor de 220 Ohms em cada segmento
 
 ![Display 7 Segmentos](/7segmentos1.png)
 ![Display 7 Segmentos](/7segmentos2.png)
