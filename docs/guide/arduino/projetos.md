@@ -683,6 +683,8 @@ void loop()
 
 ## Temperatura
 > Nao é polarizado
+>
+> Onde montei o desenho nao tinha o NTC ai coloquei um capacitor apenas para ilustrar e parecer mais ou MENOSSS igual
 
 - Temperatura: NTC 10K (ligado com um resistor de 10k)
 
