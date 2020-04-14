@@ -661,6 +661,8 @@ void loop() {
 > Nao é polarizado
 
 - Luminosidade: LDR (ligado com um resistor de 1k)
+- Tensão de operação (máxima): 150VDC
+- Potência máxima: 100mW
 
 ![Luminosidade](/luminosidade.png)
 
