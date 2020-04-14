@@ -448,28 +448,34 @@ void loop()
 ```
 
 Exemplo alterando a claridade do led
+> O Led precisa estar em uma porta PWM
+
 ![Potenciomentro](/Potenciomentro2.png)
 
 ```js
-int leitura1 = 0;
-int leitura2 = 0;
+int led = 3;
+int valor_potencimetro = 0;
+int brilho = 0;
 
 void setup()
 {
-  Serial.begin(9600);
+  pinMode(led, OUTPUT);
 }
  
 void loop()
 {
-  leitura1 = analogRead(A0);
+  valor_potencimetro = analogRead(A0);
   
-  // O +2 da (leitura2 + 2) é para pegar a variacao pra mais ou menos que existe até com ele parado
-  if (leitura1 > (leitura2 + 2) || leitura1 < (leitura2 - 2)) {
-    // Salvando o proximo ciclo do loop se nao nunca roda
-    leitura2 = leitura1;
-
-    Serial.println(leitura1);
-    delay(100);
-  }
+  // Map serve basicamente para fazer uma regra de tres em dois valores
+  /*
+  	Recebe
+    - Um valor
+    - um valor de
+    - um valor para
+    - um valor equivalente de
+    - um valor equivalente para
+  */
+  brilho = map(valor_potencimetro, 0, 1023, 0, 255);
+  analogWrite(led, brilho);
 }
 ```
