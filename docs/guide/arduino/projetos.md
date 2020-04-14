@@ -229,7 +229,7 @@ void setCor(int vermelho, int verde, int azul) {
 ## Chave Táctil ou Push Button
 > Conduz somente quando está pressionado
 
-![Led RGB](/push_button.png)
+![Push Button](/push_button.png)
 
 - Tensão máxima: 12VDC
 - Corrente máxima: 50mA
@@ -273,7 +273,7 @@ Ligado intermitente
 ```c
 int pinoBotao = 7;
 int pinoLed = 2;
-boolean ligado = 0;
+boolean ligado = false;
 
 void setup() {
   	// Define o pino como entrada _PULLUP
@@ -309,6 +309,34 @@ void loop(){
 
             break;
     }
+  }
+}
+```
+
+Outra forma de ligar o botao é direto no 5v e a outra ponta em alguma porta, mas antes da saida para esta outra porta tem que ter um resistor de 10K e onde uma ponta vai estar na saida do botao e a outra no GND.
+
+Este resistor com o GND serve para fechar um curto mas evitando queimar a placa já que pode passar uma tensao grande direto.
+
+![Push Button 2](/push_button2.png)
+
+Exemplo
+```c
+int pinoBotao = 7;
+int pinoLed = 2;
+int click = 0;
+
+void setup() {
+  	pinMode(pinoBotao, INPUT);
+	pinMode(pinoLed, OUTPUT);
+}
+void loop(){
+  click = digitalRead(pinoBotao);
+
+  if(click == HIGH){
+    digitalWrite(pinoLed, HIGH);
+    delay(1000);
+  } else {
+    digitalWrite(pinoLed, LOW);
   }
 }
 ```
