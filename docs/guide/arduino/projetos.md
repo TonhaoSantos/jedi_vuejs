@@ -340,3 +340,42 @@ void loop(){
   }
 }
 ```
+
+
+
+## Buzzer
+![Buzzer](/buzzer.png)
+
+- Tensão de operação: 3,5 - 5V
+
+Exemplos basico
+```c
+int pinoBuzzer = 8;
+
+void setup() {
+  	pinMode(pinoBuzzer, OUTPUT);
+}
+void loop(){
+  digitalWrite(pinoBuzzer, HIGH);
+  delay(150);
+  digitalWrite(pinoBuzzer, LOW);
+  delay(2000);
+}
+```
+
+![Buzzer Tone](/buzzer_tone.png)
+
+Exemplos com Tom
+```c
+int pinoBuzzer = 8;
+
+void setup() {
+  	pinMode(pinoBuzzer, OUTPUT);
+}
+void loop(){
+  digitalWrite(pinoBuzzer, HIGH);
+  delay(150);
+  digitalWrite(pinoBuzzer, LOW);
+  delay(2000);
+}
+```
