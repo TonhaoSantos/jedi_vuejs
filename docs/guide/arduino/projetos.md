@@ -720,3 +720,21 @@ void loop()
   delay(1000);
 }
 ```
+
+
+## Interrupcao
+> Interrompe o que esta fazendo para fazer outra coisa e depois que terminar volta de onde parou
+>
+> Somente as portas 2 (interrupcao 0) e 3 (interrupcao 1) no Arduino Uno podem acionar a interrupcao
+
+A funcao que efetua a interrupcao é a ```attachInterrupt(numero interrupcao, funcao, forma)```.
+
+O numero interrupcao é 0 ou 1 que representam as portas. Podemos passar a porta dentro de uma funcao que faz a traducao.
+
+A funcao que faz a traducao é a ```digitalPinToInterrupt(porta)```, ela retorna 0 para a porta 2 e 1 para a porta 3.
+
+Ele possibilita 4 formas de interrupcao:
+- RISING: 
+- FALLING: 
+- LOW: 
+- CHANGE: 
