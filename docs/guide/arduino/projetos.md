@@ -479,3 +479,48 @@ void loop()
   analogWrite(led, brilho);
 }
 ```
+
+
+## Display 7 Segmentos
+> De cada lado possui 5 pinos, o que fica no meio é o positivo/negativo (olhar na descricao quando comprar qual é a configuracao dele)
+
+![Display 7 Segmentos](/7segmentos1.png)
+
+- Tensão de operação: 5VDC
+- Corrente de operação: 30mA
+- Potência dissipada: 60mW
+- Configuração: anodo comum
+
+Exemplo basico
+```js
+int segA = 2;
+int segB = 3;
+int segC = 4;
+int segD = 5;
+int segE = 6;
+int segF = 7;
+int segG = 8;
+int segG = 8;
+
+void setup()
+{
+  pinMode(segA, OUTPUT);
+  pinMode(segB, OUTPUT);
+  pinMode(segC, OUTPUT);
+  pinMode(segD, OUTPUT);
+  pinMode(segE, OUTPUT);
+  pinMode(segF, OUTPUT);
+  pinMode(segG, OUTPUT);
+}
+ 
+void loop()
+{
+  digitalWrite(segA, LOW);
+  digitalWrite(segB, LOW);
+  digitalWrite(segC, LOW);
+  digitalWrite(segD, HIGH);
+  digitalWrite(segE, HIGH);
+  digitalWrite(segF, HIGH);
+  digitalWrite(segG, HIGH);
+}
+```
