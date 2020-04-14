@@ -485,6 +485,7 @@ void loop()
 > De cada lado possui 5 pinos, o que fica no meio é o positivo/negativo (olhar na descricao quando comprar qual é a configuracao dele)
 
 ![Display 7 Segmentos](/7segmentos1.png)
+![Display 7 Segmentos](/7segmentos2.png)
 
 - Tensão de operação: 5VDC
 - Corrente de operação: 30mA
