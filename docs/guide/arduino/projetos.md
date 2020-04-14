@@ -726,6 +726,10 @@ void loop()
 > Interrompe o que esta fazendo para fazer outra coisa e depois que terminar volta de onde parou
 >
 > Somente as portas 2 (interrupcao 0) e 3 (interrupcao 1) no Arduino Uno podem acionar a interrupcao
+>
+> Se em algum modulo tiver a sigla IRT é pq tem um acionador de interrupcao
+
+![Interrupcao](/interrupcao.png)
 
 A funcao que efetua a interrupcao é a ```attachInterrupt(numero interrupcao, funcao, forma)```.
 
@@ -734,7 +738,62 @@ O numero interrupcao é 0 ou 1 que representam as portas. Podemos passar a porta
 A funcao que faz a traducao é a ```digitalPinToInterrupt(porta)```, ela retorna 0 para a porta 2 e 1 para a porta 3.
 
 Ele possibilita 4 formas de interrupcao:
-- RISING: 
-- FALLING: 
-- LOW: 
-- CHANGE: 
+- RISING: Executa a interrupcao quando porta for do estado LOW para HIGH
+- FALLING: Executa a interrupcao quando porta for do estado HIGH para LOW
+- LOW: Executa a interrupcao enquanto a porta estiver no estado LOW
+- CHANGE: Executa a interrupcao quando a porta tiver uma mundaca de estado de LOW para HIGH e de HIGH para LOW
+
+
+```js
+#define pinVerde    12
+#define pinAmarelo  11
+#define pinVermelho 10
+#define pinBotao    2
+
+void botaoAcionado();
+
+void setup() {
+  pinMode(pinVerde, OUTPUT);
+  pinMode(pinAmarelo, OUTPUT);
+  pinMode(pinVermelho, OUTPUT);
+  
+  pinMode(pinBotao, INPUT_PULLUP);
+  
+  attachInterrupt(digitalPinToInterrupt(pinBotao), botaoAcionado, RISING);
+}
+
+void loop() {
+  digitalWrite(pinVerde, HIGH);
+  digitalWrite(pinAmarelo, LOW);
+  delay(1000);
+
+  digitalWrite(pinVerde, LOW);
+  digitalWrite(pinAmarelo, HIGH);
+  delay(1000);
+
+  // Para desligar a permissao de interrupcao e depois de algumas acoes do codigo permitir
+  noInterrupts();
+
+  // Outros codigos qualquer
+
+  // Para ligar a permissao de interrupcao novamente
+  interrupts();
+
+  // Para fazer uma interrupcao nao funcionar depois de certo ponto no codigo
+  detachInterrupt(numero interrupcao)
+
+}
+
+void botaoAcionado() {
+   static bool estado = LOW;
+   static unsigned long delayEstado;
+
+
+   if ( (millis() - delayEstado) > 100 ) {
+     estado = !estado;
+     delayEstado = millis();
+   }
+   
+   digitalWrite(pinVermelho, estado);
+}
+```
