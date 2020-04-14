@@ -344,7 +344,7 @@ void loop(){
 
 
 ## Buzzer
-![Buzzer](/buzzer.png)
+![Buzzer](/Buzzer.png)
 
 - Tensão de operação: 3,5 - 5V
 
@@ -363,8 +363,6 @@ void loop(){
 }
 ```
 
-![Buzzer Tone](/buzzer_tone.png)
-
 Exemplos com Tom
 ```c
 int pinoBuzzer = 8;
@@ -373,9 +371,9 @@ void setup() {
   	pinMode(pinoBuzzer, OUTPUT);
 }
 void loop(){
-  digitalWrite(pinoBuzzer, HIGH);
-  delay(150);
-  digitalWrite(pinoBuzzer, LOW);
-  delay(2000);
+  tone(pinoBuzzer, 2500, 100);
+  delay(1000);
 }
 ```
+
+Exemplo da musica do [star wars](https://create.arduino.cc/projecthub/HiHiHiHiiHiiIiH/star-wars-on-a-buzzer-0814f2)
