@@ -223,3 +223,88 @@ void setCor(int vermelho, int verde, int azul) {
     analogWrite(pinoB, azul);
 }
 ```
+
+## Chave Táctil ou Push Button
+> Conduz somente quando está pressionado
+
+- Tensão máxima: 12VDC
+- Corrente máxima: 50mA
+
+Exemplos
+
+Aperta para ligar e solta para desligar
+```c
+int pinoBotao = 7;
+int pinoLed = 2;
+
+void setup() {
+  	// Define o pino como entrada _PULLUP
+    // Serve para ativar o resistor interno do arduino garantindo que nao tenha
+    // flutuacao entre 0 (LOW) e 1 (HIGH)
+  	pinMode(pinoBotao, INPUT_PULLUP);
+
+  	// Pino de saida
+	pinMode(pinoLed, OUTPUT);
+  
+  	// Led inicia desligado
+	digitalWrite(pinoLed, LOW);
+}
+void loop(){
+  // Verifica se o o botao é LOW
+  if(digitalRead(pinoBotao) == LOW){
+     // Acende led
+     digitalWrite(pinoLed, HIGH);
+
+     // Colocando um delay ao desligar
+     delay(2000);
+  } else {
+    // Apaga led
+    digitalWrite(pinoLed, LOW);
+  }
+}
+```
+
+Ligado intermitente
+
+```c
+int pinoBotao = 7;
+int pinoLed = 2;
+boolean ligado = 0;
+
+void setup() {
+  	// Define o pino como entrada _PULLUP
+    // Serve para ativar o resistor interno do arduino garantindo que nao tenha
+    // flutuacao entre 0 (LOW) e 1 (HIGH)
+  	pinMode(pinoBotao, INPUT_PULLUP);
+
+  	// Pino de saida
+	pinMode(pinoLed, OUTPUT);
+  
+  	// Led inicia desligado
+	digitalWrite(pinoLed, LOW);
+}
+void loop(){
+  // Verifica se o o botao é LOW
+  if(digitalRead(pinoBotao) == LOW){
+    // Evitando ficar lendo a porta do botao apos ser precionado
+    delay(500);
+
+    switch(ligado) {
+        case false:
+            // Apagando led
+            digitalWrite(pinoLed, HIGH);
+            ligado = true;
+            break;
+        case true:
+            // Acende led
+            digitalWrite(pinoLed, LOW);
+            ligado = false;
+
+            // Colocando um delay ao desligar
+            delay(2000);
+
+            break;
+    }
+  }
+}
+```
