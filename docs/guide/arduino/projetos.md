@@ -797,3 +797,11 @@ void botaoAcionado() {
    digitalWrite(pinVermelho, estado);
 }
 ```
+
+
+## Multitarefa
+> Permite rodar varias tarefas ao mesmo tempo
+> 
+> Ao fazer multitarefa nao usar o delay() pois ele trava o arduino e nao permite fazer mais nada
+
+![Multitarefa](/multitarefa.png)
