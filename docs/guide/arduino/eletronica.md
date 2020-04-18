@@ -20,3 +20,8 @@ Para uma tensao de entrada de 5v e um LED X que trabalha com tensao de entrada d
 R = (5 - 2) / 0.02 = 150 Ohms
 
 Caso nao encontre o resistor com 150 Ohms, pode ser usado um com OMHS um pouco maior ou um pouco menor se nao tiver um maior.
+
+Capacitor
+A Capacitância media em Farad (F) representa a quantidade de carga que o Capacitor é capaz de armazenar.
+
+A Tensão representa a quantidade ideal/maxima de tensão para que o capacitor desempenhe sua função no circuito sem complicações ou riscos ao processo. É expressado em volts (V) ou quilovolts (kV).
