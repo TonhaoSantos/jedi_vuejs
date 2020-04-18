@@ -1070,4 +1070,120 @@ void loop()
 ```
 
 
+## Servo motor
+![Servo Motor](/servomotor.png)
+
+Possui tres fios:
+- vermelho: Alimentacao do servo (Tensão positiva), varia de motor para motor.
+- marrom/preto: GND
+- amarelo/outra cor: Sinal, onde envia o possicionamento (anglo que vai de 0 até 180 graus) do motor
+
+Para trabalhar com servo é preciso usar a biblioteca que ja vem com a IDE do Arduino, a ```Servo.h```
+
+Exemplo com servo de 5v
+```js
+// Biblioteca de servo motor
+#include <Servo.h>
+
+// Instanciando a classe Servo passando um nome
+Servo motor1;
+
+// Angulo de inclinacao/possicao do eixo do motor
+int possicaoMotor = 0;
+
+void setup()
+{
+  // Informando qual o pino que o motor esta
+  motor1.attach(3);
+}
+
+void loop()
+{
+  // Definindo a possicao do eixo
+  // O valor vai de 0 até 180 (graus)
+  motor1.write(10);
+}
+```
+
+Exemplo com servo de 5v rotacionando de 0 até 180 acrescentando 45 graus por rotacao
+```js
+// Biblioteca de servo motor
+#include <Servo.h>
+
+// Instanciando a classe Servo passando um nome
+Servo motor1;
+
+// Angulo de inclinacao/possicao do eixo do motor
+int possicaoMotor = 0;
+
+void setup()
+{
+  // Informando qual o pino que o motor esta
+  motor1.attach(3);
+}
+
+void loop()
+{
+  // No final retorna para a possicao inicial e comecao novamente o loop
+  for (possicaoMotor = 0; possicaoMotor < 180; possicaoMotor+=45) {
+    motor1.write(possicaoMotor);
+    delay(2000);
+  }
+  for (possicaoMotor = 180; possicaoMotor > 0; possicaoMotor-=45) {
+    motor1.write(possicaoMotor);
+    delay(2000);
+  }
+}
+```
+
+
+## Motor DC
+![Monitor Serial 1](/monitorserial1.png)
+
+
+Exemplo ligando led com arduino recebendo dado via monitor serial. Mandar de 1 até 3 no monitor serial para ligar os leds, pode mandar varios ao mesmo tempo
+```js
+// Recebe as informacoes da serial
+int recebido = 0;
+
+// Setando o valor inicial e nao as portas
+int statusLed1 = LOW;
+int statusLed2 = LOW;
+int statusLed3 = LOW;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+void loop()
+{
+  // Verificando se a serial foi iniciada e tem alguma informacao
+  if (Serial.available() > 0) {
+  	// Recebendo valores
+    recebido = Serial.read();
+    
+    // Verificar o que veio
+    switch (recebido) {
+      case '1':
+      	if (statusLed1 == HIGH) {statusLed1 = LOW;} else {statusLed1 = HIGH;}
+      	digitalWrite(2, statusLed1);
+      	break;
+      case '2':
+      	if (statusLed2 == HIGH) {statusLed2 = LOW;} else {statusLed2 = HIGH;}
+      	digitalWrite(3, statusLed2);
+      	break;
+      case '3':
+      	if (statusLed3 == HIGH) {statusLed3 = LOW;} else {statusLed3 = HIGH;}
+      	digitalWrite(4, statusLed3);
+      	break;
+    }
+  }
+}
+```
+
+
 
