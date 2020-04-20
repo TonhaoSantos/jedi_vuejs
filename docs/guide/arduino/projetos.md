@@ -217,14 +217,19 @@ void loop() {
   displayTeste.home();
 
   //displayTeste.setCursor(15,0);
+  // Movimento o cursor da direita para a esquerda
   //displayTeste.rightToLeft();
 
+
   //displayTeste.setCursor(0,0);
+  // Movimento o cursor da esquerda para a direita (padrao)
   //displayTeste.leftToRight();
   
+  // o cursor fica fixo e somente o conteudo tem scroll
   //displayTeste.autoscroll();
   //displayTeste.setCursor(8,0);
   
+  // Escreve do 0 ao 9 sequencialmente
   for (int c = 0; c < 10; c++) {
       displayTeste.write(byte(48 + c));
       delay(1000);
