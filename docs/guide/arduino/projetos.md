@@ -50,6 +50,9 @@ void loop()
   lcd.setCursor(3, 1);
   lcd.print("Linha 2");
   delay(5000);
+
+  // Para imprimir um unico caracter, envolvido de aspas simples
+  // lcd.write('a');
    
   //Rolagem para a esquerda
   for (int posicao = 0; posicao < 3; posicao++)
