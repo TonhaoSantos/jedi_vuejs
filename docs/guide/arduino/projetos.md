@@ -25,7 +25,9 @@ Ligacoes
 | 15        |  A (led 1) |  VCC 5V   |
 | 16        |  K (led 2) |  GND      |
 
-Codigo
+[PDF Tabelas de carascteres](/tabela_caracter_lcd.pdf), se atentar que existem duas tabelas. Cada display usa uma.
+
+Codigo 1
 ```js
 //Carrega a biblioteca LiquidCrystal
 #include <LiquidCrystal.h>
@@ -35,8 +37,22 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
  
 void setup()
 {
-  //Define o número de colunas e linhas do LCD
-  lcd.begin(16, 2);
+  // Define o número de colunas e linhas do LCD
+  /*
+    Em alguns displays (especiais) o tamanho do caracter
+      é um pouco maior falando em pontos
+    
+    Nos mais comuns temos cada caracter formados por 5x8:
+      - 5 pontos na horizontal
+      - 8 pontos na vertical
+    
+    Em alguns outros temos 5x10
+
+    Por isso temos que passar como terceiro parametro no begin o tamanho do nosso.
+
+    Por padrao vem LCD_5X8DOTS
+  */
+  lcd.begin(16, 2, LCD_5X10DOTS);
 }
  
 void loop()
@@ -67,8 +83,155 @@ void loop()
     lcd.scrollDisplayRight();
     delay(300);
   }
+
+  // Limapr a tela
+  // lcd.clear();
 }
 ```
+
+Codigo 2
+```js
+#include <LiquidCrystal.h>
+
+LiquidCrystal displayTeste(2,4,10,11,12,13);
+
+int efeito = 0;
+int contraste = 0;
+boolean aumenta = true;
+
+
+byte smiley[8] = {
+  B00000,
+  B10001,
+  B00000,
+  B00000,
+  B10001,
+  B01110,
+  B00000,
+};
+
+void setup() {
+  // Pino para dar o efeito igual tivesse usando um potenciomentro
+  pinMode(5, OUTPUT);
+  analogWrite(5, 0);
+
+  /*
+    Se queremos usar caracteres ou qualquer outra informacao usando as tabelas,
+      para displays AO1 (no pdf de download) é mais complicado por nao ter acentucao.
+    O display A01 possui todas a 16 primeiras possicoes (0 - 15) espacos reservados
+      para criarmos os nossos caracteres.
+    Para isso podemos usar o createChar passando no primeiro parametro a possicao
+      na tabela e como segundo argumento um array do tipo byte com 8 possicoes.
+    Cada possicao vamos escrever um byte no formato do caracter que queremos, com
+      a estrutura B00000.
+    Onde esta o zero podemos setar 0 ou 1, sendo 0 onde nao aparece nada e 1 onde
+      aparece um ponto naquele caracter.
+    Comeca com B pois estamos informando o formato binario.
+    E possui 5 colunas de um caracter, que ja falei anteriormente junto com o LCD_5X10DOTS
+      neste exemplo é um display LCD_5X8DOTS.
+    Esta criacao de caracter tem q ser antes do begin do display, para poder usar.
+  */
+  displayTeste.createChar(0, smiley);
+
+  displayTeste.begin(16,2);
+
+  // Ligar o cursor
+  //displayTeste.cursor();
+
+  // Ligar o cursor tbm, com o cursor piscando
+  //displayTeste.blink();
+
+  // Voltar o cursor para o inicio, no setCursor(0,0);
+  // displayTeste.home();
+
+  displayTeste.print("Brincando com");
+  displayTeste.setCursor(2,1);
+  displayTeste.print("Ideias ");
+  displayTeste.write(byte(0));
+  
+  //Teste da Tabela de Caracteres
+  displayTeste.setCursor(15,1);
+
+  // Usando a tabela em pdf de download
+  displayTeste.write(byte(244));
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  if (efeito == 1) {
+     analogWrite(5, contraste);
+     delay(20);
+
+     if (aumenta) contraste++;
+     else         contraste--;
+  
+     if (contraste == 150) aumenta = false;
+
+     if (contraste == 0) aumenta = true;
+  }
+
+  if (efeito == 2) {
+     // Ocultar o conteudo para visualizacao
+     displayTeste.noDisplay();
+     delay(500);
+
+     // Voltar o conteudo para visualizacao
+     displayTeste.display();
+     delay(500);
+  }
+
+  if (efeito == 3) {
+     // Permite o texto rolar para a esquerda, quando acabar volta
+     displayTeste.scrollDisplayLeft();
+     delay(350);
+  }
+
+  if (efeito == 4) {
+     // Permite o texto rolar para a direita, quando acabar volta
+     displayTeste.scrollDisplayRight();
+     delay(350);
+  }
+  
+}
+```
+
+Codigo 3
+```js
+#include <LiquidCrystal.h>
+
+LiquidCrystal displayTeste(2,4,10,11,12,13);
+
+void setup() {
+  pinMode(5, OUTPUT);
+  analogWrite(5, 0);
+
+  displayTeste.begin(16,2);
+  displayTeste.blink();
+}
+
+void loop() {
+
+  displayTeste.clear();
+  displayTeste.home();
+
+  //displayTeste.setCursor(15,0);
+  //displayTeste.rightToLeft();
+
+  //displayTeste.setCursor(0,0);
+  //displayTeste.leftToRight();
+  
+  //displayTeste.autoscroll();
+  //displayTeste.setCursor(8,0);
+  
+  for (int c = 0; c < 10; c++) {
+      displayTeste.write(byte(48 + c));
+      delay(1000);
+  }
+}
+```
+
 
 
 
