@@ -1,4 +1,7 @@
 # Projetos
+> Licoes feitas em tutoriais da internet e livros para uso pessoal futuros
+>
+> Não possuo direito em muitos codigos e nem quero, caso ache que o codigo é seu pode me contatar para que eu coloque o seu direito nele :D
 
 ## LCD 16x2
 > Alguns LCD's podem nao vir com um resistor no pino 15(A/Led 1), podemos usar dois resistores de **165 Ohms** sem serie
@@ -404,6 +407,15 @@ void setCor(int vermelho, int verde, int azul) {
 
 - Tensão máxima: 12VDC
 - Corrente máxima: 50mA
+
+Uma coisa importante para se lembrar é usar um resistor na entrada ligado no terra para evitar a alta impedancia/flutuacao na porta logica pois o circuito podendo ser ativado tbm pela imterferencia do ambiente consideranco o que ele quiser, tanto zero como um e ficar nesta troca constante.
+
+Este resistor que quando vai para o terra é chamado do resistor de PULL-DOWN, que é quando vamos enviar 5v para dizer que foi precionado. É um resistor comum, nada especial.
+
+Este resistor que quando vai para o 5v é chamado do resistor de PULL-UP, que é quando vamos enviar 0v para dizer que foi precionado. É um resistor comum, nada especial.
+
+Não tem um valor ideal para o resistor, mas podemos usar um resistor sempre abaixo de 1k Ohm (830 ohm, 510 ohm, ...). Tambem podemos usar um de 10k que tbm vai funcionar.
+
 
 Exemplos
 
@@ -1308,4 +1320,231 @@ void loop()
 ```
 
 
+## Display OLED (Direitos Flavio Guimaraes)
+> Existem o I2C e o SPI
 
+- I2C: Duas portas apenas para comunicao (No UNO são a A4'SDA' e A5'SCL')
+- SPI: Varias portas para comunicao
+
+
+![Display OLED I2C Modelo 1](/display_oled_12c_modelo1.png)
+![Display OLED SPI Modelo 2](/display_oled_12c_modelo2.png)
+
+Exemplo usando o modelo 1 (I2C)
+
+Para poder desenvolver, baixar a biblioteca [MicroLCD](/MicroLCD.zip) e o programa (LCD Assistant)[/LCDAssistant.zip] para gerar o ... da imagem []().
+```js
+/****************************************************************************************
+  Video Q0174 - Módulos para Arduino - Micro LCD OLED
+  
+  Desenvolvido pela Fábrica de Programas - Brincando com Ideias (www.brincandocomideias.com)
+  www.youtube.com/c/BrincandoComIdeias
+
+  Autor Flavio Guimaraes  
+*****************************************************************************************/ 
+
+//BIBLIOTECAS
+#include <Arduino.h>
+#include <Wire.h>
+#include <MicroLCD.h>
+
+
+//CONFIGURACAO DO DISPLAY MICRO LCD
+// Verificar qual o Controlador do seu display (LCD_SH1106 ou LCD_SSD1306)
+LCD_SH1106 lcd; /* para módulo controlado pelo CI SH1106 OLED */ 
+//LCD_SSD1306 lcd; /* para módulo contralado pelo CI SSD1306 OLED */
+
+// Exemplo de como mandar uma img para o display
+// Array de um byte em HEX, a soma de todos vai dar 48px x 48px
+// Pegar uma img e converter para monocromatico (bmp monocromatico), usar ela no LCD Assistant
+// Depois no porgrama ainda deixe em Byte orientation como vertical
+// Depois os tamanhos 48 x 48
+// Depois Size endianness com Litlle
+// Depois de em Pixels deixe com 8
+// Deppis de um nome (Sera usado como o nome do array)
+// Depois File > Save
+// Abra o arquivo com o bloco de notas e copie o conteudo e altere dentro deste array
+// Atentar que deve ser uma const pois nunca muda, armazenada na PROGMEM para nao acabar com a memoria do arduino e é do tipo inteiro uint8_t
+/*
+    Este calculo de dentro do array é o seguinte
+    Digamos que tenho uma img 10x10, logo vai dar 100 que é 100px
+    Dividindo por 8, pois dentro de cada byte tem a informacao de 8px,
+       ou seja, um byte é igual 8 bit e um px monocromatico é 8bit
+*/
+const PROGMEM uint8_t logo[48 * 48 / 8] = {
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xC0, 0xC0, 0xE0, 0xE0,
+0xF0, 0xF0, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0x18, 0x18, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF0, 0xF0,
+0xE0, 0xE0, 0xC0, 0xC0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0xF0, 0xF8, 0xFC, 0xFE, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0xF8,
+0xF1, 0x73, 0x1F, 0x0F, 0x0F, 0x07, 0x07, 0x06, 0x04, 0x07, 0x07, 0x0F, 0x0F, 0x1F, 0x63, 0xF1,
+0xF8, 0xFD, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE, 0xFC, 0xF8, 0xF0, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0xF0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF9, 0xF9, 0xF9, 0xF9, 0xFF,
+0xFF, 0x00, 0x00, 0x00, 0x80, 0x80, 0x80, 0x80, 0x00, 0x80, 0x80, 0x80, 0x80, 0x00, 0x00, 0xFF,
+0xFF, 0xF9, 0xF9, 0xF9, 0xF9, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x07, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F,
+0x7F, 0x00, 0x00, 0x40, 0x7F, 0x4F, 0x0F, 0x03, 0x00, 0x0F, 0x4F, 0x7F, 0x7F, 0x00, 0x00, 0x7F,
+0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0x07, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 0x0F, 0x1F, 0x3F, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC,
+0xF8, 0xF8, 0x08, 0x04, 0x00, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0x00, 0x04, 0x08, 0xF8, 0xF8,
+0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0x3F, 0x1F, 0x0F, 0x07, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x03, 0x03,
+0x07, 0x07, 0x0E, 0x0E, 0x0E, 0x0F, 0x0F, 0x1F, 0x1F, 0x0F, 0x0F, 0x08, 0x08, 0x0C, 0x07, 0x07,
+0x07, 0x03, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+
+//***********************************************************************************************
+void setup()
+{
+	lcd.begin();
+}
+
+
+//***********************************************************************************************
+void loop()
+{
+    // Limpando a tela
+  lcd.clear();
+
+  // A diferenca aqui para o LCD normal é q no LCD normal é caracter e aqui é pixel
+  lcd.setCursor(40, 1);
+
+  // Desenhando a img
+  lcd.draw(logo, 48, 48);
+  delay(1000);
+
+  lcd.clear();
+  lcd.setFontSize(FONT_SIZE_SMALL);
+  lcd.println("Ola, Mundo!");
+  lcd.setFontSize(FONT_SIZE_MEDIUM);
+  lcd.println("Ola, Mundo!");
+  delay(1000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.setFontSize(FONT_SIZE_SMALL);
+  lcd.printLong(12345678);
+  delay(1000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.setFontSize(FONT_SIZE_MEDIUM);
+  lcd.printLong(12345678);
+  delay(1000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  // Nesta biblioteca funciona apenas para printLong
+  lcd.setFontSize(FONT_SIZE_LARGE);
+  lcd.printLong(12345678);
+  delay(1000);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  // Nesta biblioteca funciona apenas para printLong
+  lcd.setFontSize(FONT_SIZE_XLARGE);
+  lcd.printLong(12345678);
+  delay(1000);
+}
+
+```
+
+
+## Teclado matricial (Membrana)
+![Teclado Matricial](/tecladomatricial.png)
+
+No teclado 4x4 (16 teclas) temos 4 linhas e 4 colunas, onde temos os terras nos pinos 5 ao 8 e as entras digitais 1 ao 4.
+
+No teclado 4x3 (12 teclas) temos 4 linhas e 2 colunas, onde temos os terras nos pinos 5 ao 7 e as entras digitais 1 ao 4.
+
+No teclado 1x4 (4 teclas) temos 1 linhas e 4 colunas, onde temos o terra no pino 1 e as entras digitais 2 ao 5.
+
+Caso os pinos nao funcionem usar um multimetro para saber os pinos dos botoes.
+
+Exemplo sem biblioteca
+```js
+// A ordem dos pinos com as portas [linha 1, linha 2, linha 3 e linha 4]
+int pinosLinhas[]  = {11,10,9,8};
+// A ordem dos pinos com as portas [coluna 1, coluna 2, coluna 3 e coluna 4]
+int pinosColunas[] = {7,6,5,4};
+char teclas[4][4] = {{'1','2','3','A'},
+                     {'4','5','6','B'},
+                     {'7','8','9','C'},
+                     {'*','0','#','D'}};
+
+void setup()
+{
+  for (int nL = 0; nL <= 3; nL++) {
+     pinMode(pinosLinhas[nL], OUTPUT);
+     digitalWrite(pinosLinhas[nL], HIGH);
+  }
+
+  for (int nC = 0; nC <= 3; nC++) {
+     pinMode(pinosColunas[nC], INPUT_PULLUP);
+  } 
+   
+  Serial.begin(9600);
+  Serial.println("Teclado 4x4");
+  Serial.println("Aguardando acionamento das teclas...");
+  Serial.println();
+}
+ 
+void loop()
+{
+    //faz varredura em todas as linhas, desligando uma de cada vez
+    for (int nL = 0; nL <= 3; nL++)
+    {
+      digitalWrite(pinosLinhas[nL], LOW);
+      
+      //faz varredura em todas as colunas verificando se tem algum botao apertado
+      for (int nC = 0; nC <= 3; nC++) {
+        if (digitalRead(pinosColunas[nC]) == LOW)
+        {
+          Serial.print("Tecla: ");
+          Serial.println(teclas[nL][nC]);
+          while(digitalRead(pinosColunas[nC]) == LOW){}
+        }
+      }
+
+      digitalWrite(pinosLinhas[nL], HIGH);
+    }
+   delay(10);
+}
+```
+
+Exemplo com biblioteca, baixar [aqui](/Keypad.zip)
+```js
+#include <Keypad.h>
+byte pinosLinhas[]  = {10,5,6,8};
+
+byte pinosColunas[] = {9,11,7};
+
+char teclas[4][3] = {{'1','2','3'},
+                     {'4','5','6'},
+                     {'7','8','9'},
+                     {'*','0','#'}};
+// Cria uma instancia do tipo Keypad
+// A funcao Keypad recebe como parametro 1 o array de teclas, 2 o pinos das linhas
+// Como 3 o pinos das colunas, como 4 a quantidade de linhas e no 5 a quantidade de colunas
+Keypad teclado1 = Keypad( makeKeymap(teclas), pinosLinhas, pinosColunas, 4, 3);  
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Teclado 4x4 com Biblioteca Keypad");
+  Serial.println("Aguardando acionamento das teclas...");
+  Serial.println();
+}
+
+void loop() {
+  //Verifica se alguma tecla foi pressionada
+  char tecla_pressionada = teclado1.getKey();
+  
+  //Mostra no serial monitor o caracter da matriz,
+  //referente a tecla que foi pressionada
+  if (tecla_pressionada)
+  {
+    Serial.print("Tecla: ");
+    Serial.println(tecla_pressionada);
+  } 
+}
+```
