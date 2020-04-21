@@ -416,6 +416,59 @@ Este resistor que quando vai para o 5v é chamado do resistor de PULL-UP, que é
 
 Não tem um valor ideal para o resistor, mas podemos usar um resistor sempre abaixo de 1k Ohm (830 ohm, 510 ohm, ...). Tambem podemos usar um de 10k que tbm vai funcionar.
 
+Pull-Down (Vara evitar que a porta ache que esta ligada sendo que nao esta)
+![Pull-Down](/pulldown.png)
+
+```js
+int led = 13;
+int btPullDown = 10;
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  pinMode(btPullDown, INPUT);
+  
+  digitalWrite(led, LOW);
+}
+
+void loop()
+{
+  if(digitalRead(btPullDown) == HIGH){
+     // Acende led
+     digitalWrite(led, HIGH);
+  } else {
+    // Apaga led
+    digitalWrite(led, LOW);
+  }
+}
+```
+
+Pull-Up (Vara evitar que a porta ache que nao esta ligada sendo que esta
+![Pull-Up](/pullup.png)
+
+```js
+int led = 13;
+int btPullUp = 10;
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  pinMode(btPullDown, btPullUp);
+  
+  digitalWrite(led, LOW);
+}
+
+void loop()
+{
+  if(digitalRead(btPullDown) == LOW){
+     // Acende led
+     digitalWrite(led, HIGH);
+  } else {
+    // Apaga led
+    digitalWrite(led, LOW);
+  }
+}
+```
 
 Exemplos
 
