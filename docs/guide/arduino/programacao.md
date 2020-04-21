@@ -163,10 +163,10 @@ TIPOS
     - sizeof()
 
 
-
 Constantes
 ```js
 /*
+Constantes de ponto flutuante
 
 Descrição
     Semelhante a constantes inteiras, as constantes de ponto flutuante são usadas para tornar o código mais legível.
@@ -191,14 +191,10 @@ Notas e avisos
 */
 
 
+/*
+Constantes Inteiras
 
-
-
-
-
-
-// Constantes Inteiras
-  Descrição
+Descrição
     Constantes inteiras são números que são usados ​​diretamente em um esboço, como 123.
     Por padrão, esses números são tratados como int, mas você pode alterar isso com os modificadores U e L (veja abaixo).
 
@@ -216,13 +212,13 @@ Notas e avisos
     16 (hexadecimal) |     0x7B          |  levando "0x"       | caracteres 0-9, AF, af válido
     _________________|___________________|_____________________|___________________
 
-  Decimal (base 10)
+Decimal (base 10)
     Essa é a matemática do senso comum com a qual você está familiarizado. Constantes sem outros prefixos são assumidos como estando no formato decimal.
 
     Exemplo de código:
     n = 101; // same as 101 decimal ((1 * 10^2) + (0 * 10^1) + 1)
 
-  Binário (base 2)
+Binário (base 2)
     Apenas os caracteres 0 e 1 são válidos.
 
     Exemplo de código:
@@ -233,7 +229,7 @@ Notas e avisos
     myInt = (B11001100 * 256) + B10101010; // B11001100 is the high byte`
 
 
-  Octal (base 8)
+Octal (base 8)
     Apenas os caracteres de 0 a 7 são válidos. Os valores octais são indicados pelo prefixo "0" (zero).
 
     Exemplo de código:
@@ -241,34 +237,29 @@ Notas e avisos
 
     É possível gerar um erro difícil de encontrar (inadvertidamente) incluindo um zero à esquerda antes de uma constante e ter o compilador intencionalmente interpretando sua constante como octal.
 
-  Hexadecimal (base 16)
+Hexadecimal (base 16)
     Os caracteres válidos são de 0 a 9 e letras de A a F; A tem o valor 10, B é 11, até F, que é 15. Os valores hexadecimais são indicados pelo prefixo "0x". Observe que o AF pode ser digitado em maiúscula ou minúscula (af).
 
     Exemplo de código:
     n = 0x101; // same as 257 decimal ((1 * 16^2) + (0 * 16^1) + 1)
 
-  Notas e avisos
+Notas e avisos
     Formatadores U & L:
     Por padrão, uma constante inteira é tratada como um int com as limitações de valores do atendente. Para especificar uma constante inteira com outro tipo de dados, siga com:
         um 'u' ou 'U' para forçar a constante em um formato de dados não assinado. Exemplo: 33u
         um 'l' ou 'L' para forçar a constante em um formato de dados longo. Exemplo: 100000L
         um 'ul' ou 'UL' para forçar a constante em uma constante longa sem sinal. Exemplo: 32767ul
 
+*/
 
 
-
-
-
-
-
-
-
-
-// HIGH | LOW | INPUT | OUTPUT | INPUT_PULLUP | LED_BUILTIN | true | false
-  Descrição
+/*
+HIGH | LOW | INPUT | OUTPUT | INPUT_PULLUP | LED_BUILTIN | true | false
+  
+Descrição
     Constantes são expressões predefinidas na linguagem Arduino. Eles são usados ​​para tornar os programas mais fáceis de ler. Nós classificamos constantes em grupos:
 
-  Definindo níveis lógicos: true e false (constantes booleanas)
+Definindo níveis lógicos: true e false (constantes booleanas)
     Existem duas constantes usadas para representar a verdade e a falsidade na linguagem do Arduino: true e false .
 
     false
@@ -279,7 +270,7 @@ Notas e avisos
 
       Observe que as constantes true e false são digitadas em letras minúsculas, diferentemente de HIGH , LOW , INPUT e OUTPUT .
 
-  Definindo Níveis de Pino: HIGH e LOW
+Definindo Níveis de Pino: HIGH e LOW
     Ao ler ou gravar em um pino digital, existem apenas dois valores possíveis que um pino pode levar / definir como: HIGH e LOW .
 
     HIGH
@@ -305,7 +296,7 @@ Notas e avisos
 
       Quando um pino é configurado para OUTPUT com o pinMode() e definido como LOW com digitalWrite() , o pino está em 0 volts (placas de 5V e 3.3V). Neste estado, pode afundar a corrente, por exemplo, acender um LED ligado através de um resistor em série a +5 volts (ou +3,3 volts).
 
-  Definindo os modos de pinos digitais: INPUT, INPUT_PULLUP e OUTPUT
+Definindo os modos de pinos digitais: INPUT, INPUT_PULLUP e OUTPUT
     Pinos digitais podem ser usados ​​como INPUT , INPUT_PULLUP ou OUTPUT . Alterar um pino com pinMode() altera o comportamento elétrico do pino.
 
     Pins configurados como INPUT
@@ -317,21 +308,21 @@ Notas e avisos
 
       Se um resistor pull-up for usado, o pino de entrada será HIGH quando o interruptor estiver aberto e LOW quando o interruptor estiver fechado.
 
-    Pins configurados como INPUT_PULLUP
+Pins configurados como INPUT_PULLUP
       O microcontrolador ATmega no Arduino possui resistores pull-up internos (resistores que se conectam à energia internamente) que você pode acessar. Se você preferir usá-los em vez de resistores pull-up externos, você pode usar o argumento pinMode() em pinMode() .
 
       Veja o tutorial Serial Input Pullup (https://www.arduino.cc/en/Tutorial/InputPullupSerial) para um exemplo disso em uso.
 
       Os pinos configurados como entradas com INPUT ou INPUT_PULLUP podem ser danificados ou destruídos se estiverem conectados a tensões abaixo do solo (voltagens negativas) ou acima do barramento de alimentação positivo (5V ou 3V).
 
-  Pins configurados como OUTPUT
+Pins configurados como OUTPUT
     Pinos configurados como OUTPUT com o pinMode() são considerados em estado de baixa impedância . Isso significa que eles podem fornecer uma quantidade substancial de corrente para outros circuitos. Os pinos ATmega podem fornecer fonte (fornecer corrente) ou dissipar (absorver corrente) até 40 mA (miliamperes) de corrente para outros dispositivos / circuitos. Isso os torna úteis para alimentar LEDs porque os LEDs normalmente usam menos de 40 mA. Cargas maiores que 40 mA (por exemplo, motores) exigirão um transistor ou outro circuito de interface.
 
     Os pinos configurados como saídas podem ser danificados ou destruídos se estiverem conectados a trilhos de energia aterrados ou positivos.
 
-  Definindo internos: LED_BUILTIN
+Definindo internos: LED_BUILTIN
     A maioria das placas Arduino tem um pino conectado a um LED on-board em série com um resistor. A constante LED_BUILTIN é o número do pino ao qual o LED on-board está conectado. A maioria das placas tem esse LED conectado ao pino digital 13.
-
+*/
 ```
 
 
