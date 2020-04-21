@@ -31,6 +31,7 @@ module.exports = {
           '/guide/arduino/introducao',
           '/guide/arduino/eletronica',
           '/guide/arduino/arduino',
+          '/guide/arduino/programacao',
           '/guide/arduino/modulos',
           '/guide/arduino/projetos'
         ]
