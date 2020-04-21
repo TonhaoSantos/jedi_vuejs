@@ -443,7 +443,9 @@ void loop()
 }
 ```
 
-Pull-Up (Vara evitar que a porta ache que nao esta ligada sendo que esta
+Pull-Up (Vara evitar que a porta ache que nao esta ligada sendo que esta.
+
+No arduino internamente já existe este resistor, para usar basta definir o pinMode(pino, INPUT_PULLUP).
 ![Pull-Up](/pullup.png)
 
 ```js
