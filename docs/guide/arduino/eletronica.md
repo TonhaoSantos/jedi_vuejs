@@ -4,9 +4,13 @@
 > Caso encontre alguma coisa que esteja errado pode me informar que estou aberto para correcoes.
 
 ## LED
+Existe led alto brilho que nao é pintado e difuso que é pintado.
+
 Para calcular o resistor para o LED podemos usar a seguinte formula:
 
+```js
 R = (Ve - Vl) / il
+```
 
 - R: Resistor
 - Ve: Tensão de entrada
@@ -17,11 +21,96 @@ R = (Ve - Vl) / il
 
 Para uma tensao de entrada de 5v e um LED X que trabalha com tensao de entrada de 2v e 20mA.
 
-R = (5 - 2) / 0.02 = 150 Ohms
+A formula é ```R = Ventrada - Vled / Aled```
+
+```js
+R = (5 - 2) / 0.02
+R = 3 / 0.02 = 150 Ohms
+```
 
 Caso nao encontre o resistor com 150 Ohms, pode ser usado um com OMHS um pouco maior ou um pouco menor se nao tiver um maior.
 
-Capacitor
+Lidagos em serie a corrente é a mesma, mas a tensao muda. A tensao é somada para fazer o calculo.
+
+**Exemplo**
+
+Para uma tensao de entrada de 5v e dois LEDs X que trabalha com tensao de entrada de 2v e 20mA cada.
+
+A formula é ```R = Ventrada - (Vled1 + Vled2 + ...) / Aled```
+
+```js
+R = (5 - (2+2)) / 0.02
+R = (5 - 4) / 0.02
+R = 1 / 0.02 = 50 Ohms
+```
+
+
+Lidagos em paralelo a tensao é a mesma para todos os leds e a corrente só a mesma se a resistencia das cargas forem iguais.
+
+**Exemplo**
+
+Para uma tensao de entrada de 5v e dois LEDs X que trabalha com tensao de entrada de 2v e 20mA cada.
+
+A formula é ```R = Ventrada - (Vleds) / (Aled1 + Aled2 + ...)```
+
+```js
+R = 5 - 2 / (0.02 + 0.02)
+R = 5 - 2 / 0.04
+R = 3 / 0.04 = 75 Ohms
+```
+
+
+
+Vale lembrar que é bom olhar a potencia tambem, pois se a tensao da fonte for muito alta o resistor precisa mandar embora o calor.
+
+Quanto maior for a potência em watts do resistor maior a sua capacidade de dissipação de calor.
+
+A corrente que circula por ele ja que esta em serie com o led é a mesma do led, se atentar a isso.
+
+O resistores são vendidos em potencias de 1/16 (0,06), 1/8 (0,12), 1/4 (0,25), 1/2 (0,50), 1w, 2w, 3w, ... assim por diante
+
+A formula é ```P = (Ventrada - (Vled1))ˆ2 / R```
+
+Para calcular a potencia para um led ```P = (Ventrada - (Vled1))ˆ2 / R```:
+```js
+R = (5 - 2) / 0.02
+R = 3 / 0.02 = 150 Ohms
+
+P = (5 - 2)ˆ2 / 150
+P = 3ˆ2 / 150 = 0.06W (watts)
+```
+
+Um resistor de 1/16 estaria otimo mas encontramos com mais facilidade de 1/8 e 1/4, já que o 1/4 dissipa mais podemos escolher ele.
+
+
+Para calcular a potencia para leds em serie ```P = (Ventrada - (Vled1 + Vled2 + ...))ˆ2 / R```:
+```js
+R = (5 - (2+2)) / 0.02
+R = (5 - 4) / 0.02
+R = 1 / 0.02 = 50 Ohms
+
+P = (5 - (2+2))ˆ2 / 50
+P = (5 - 4)ˆ2 / 50
+P = (5 - 4)ˆ2 / 50
+P = 1ˆ2 / 50 = 0.02W (watts)
+```
+
+Para calcular a potencia para leds em paralelo ```P = (Ventrada - Vleds)ˆ2 / R```:
+
+A formula é ```R = Ventrada - (Vleds) / (Aled1 + Aled2 + ...)```
+
+```js
+R = 5 - 2 / (0.02 + 0.02)
+R = 5 - 2 / 0.04
+R = 3 / 0.04 = 75 Ohms
+
+P = (5 - 2)ˆ2 / 75
+P = 3ˆ2 / 75 = 0.12W (watts)
+```
+
+
+
+## Capacitor
 A Capacitância media em Farad (F) representa a quantidade de carga que o Capacitor é capaz de armazenar.
 
 A Tensão representa a quantidade ideal/maxima de tensão para que o capacitor desempenhe sua função no circuito sem complicações ou riscos ao processo. É expressado em volts (V) ou quilovolts (kV).
