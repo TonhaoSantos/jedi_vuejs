@@ -1652,6 +1652,7 @@ void loop() {
 }
 
 void mimi() {
+  // Se nao for a low da erro e trava 
   attachInterrupt(digitalPinToInterrupt(pinoBotao), disperta, LOW);
 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
