@@ -3,6 +3,28 @@
 >
 > Caso encontre alguma coisa que esteja errado pode me informar que estou aberto para correcoes.
 
+## Calculo Bateria
+Calculo para saber quanto tempo dura uma bateria alimentando um projeto.
+
+Um Projeto X que é alimentado por uma bateria de 5v.
+
+Alimentando em uma bateria de 6v e 12Ah (Ampeer Hora de fornecimento de corrente), usando um amperimentro no fio vermelho de fornecimento de energia podemos saber qual o consume de corrente no projeto.
+
+Digamos que este projeto consome 150mA (0.15A).
+
+Olhando na documentacao da bateria podemos procurar pela tabela de descarga em corrente constante.
+
+Muitas baterias mostram o tempo de duracao dela.
+
+Uma da KMA Brasil por exemplo com as mesmas caracteristicas do exemplo mostram o seguinte:
+
+[Exemplo bateria](/bateriaexemplo.png)
+
+Se tivermos uma bateria descarregando e com carga de 5.55v e no nosso projeto tivermos um consumo de 32A a bateria dura 5 minutos.
+
+Para o exemplo de consumo de 150mA (0.15A), nosso projeto pode durar entre 1 - 2 dias com a bateria de exemplo.
+
+
 ## LED
 Existe led alto brilho que nao é pintado e difuso que é pintado.
 
