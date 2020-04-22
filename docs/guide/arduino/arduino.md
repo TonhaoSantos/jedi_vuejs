@@ -1,16 +1,16 @@
 # Arduino
 
-– Microcontrolador: ATmega328
-– Tensão de Operação: 5V
-– Tensão de Entrada: 7-12V
-– Portas Digitais: 14 (6 podem ser usadas como PWM)
-– Portas Analógicas: 6
-– Corrente Pinos I/O: 40mA
-– Corrente Pinos 3,3V: 50mA
-– Memória Flash: 32KB (0,5KB usado no bootloader)
-– SRAM: 2KB
-– EEPROM: 1KB
-– Velocidade do Clock: 16MHz
+- Microcontrolador: ATmega328
+- Tensão de Operação: 5V
+- Tensão de Entrada: 7-12V
+- Portas Digitais: 14 (6 podem ser usadas como PWM)
+- Portas Analógicas: 6
+- Corrente Pinos I/O: 40mA
+- Corrente Pinos 3,3V: 50mA
+- Memória Flash: 32KB (0,5KB usado no bootloader)
+- SRAM: 2KB
+- EEPROM: 1KB
+- Velocidade do Clock: 16MHz
 
 ## Alimentacao
 Para alimentar o arduino podemos fazer das seguintes formas (7v até 12v):
