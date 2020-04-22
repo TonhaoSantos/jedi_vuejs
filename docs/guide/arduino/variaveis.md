@@ -1,5 +1,5 @@
 # Programacao
-**99.9% do conteudo desta pagina é traducao da pagina do [arduino](https://www.arduino.cc/reference/en), quando sai compilando este conteudo nao tinha uma traducao muito definida no site, dai usei o google tradutor e copiei para um bloco de notas gigante que agora esta aqui**
+**99.9% do conteudo desta pagina é traducao da pagina do [arduino](https://www.arduino.cc/reference/en), quando este assunto foi compilado nao tinha uma traducao muito definida no site, dai usei o google tradutor e copiei para um bloco de notas gigante que agora esta aqui**
 
 **O intuido deste conteudo não é roubar o direitos dos seus donos, mas sim para facilitar a minha busca, visto que este site é um cookbook para minhas consultas.**
 
