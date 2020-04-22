@@ -1603,3 +1603,68 @@ void loop() {
   } 
 }
 ```
+
+
+## Sleep Mode
+Colocar o arduino para dormir diminuindo o consumo da bateria
+
+![Sleep Mode](/sleepmode.png)
+
+```js
+// Biblioteca
+#include <avr/sleep.h>
+
+const pinoBotao 2;
+const pinoLed 7;
+
+bool estadoBUILTIN = false;
+
+// Declarando a funcao
+void mimi();
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Iniciando setup()");
+
+  pinMode(pinoLed, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(pinoBotao, INPUT_PULLUP);
+
+  digitalWrite(pinoLed, LOW);
+
+  Serial.println("Fim setup()");
+}
+
+void loop() {
+  Serial.println("Ligando o LED");
+  digitalWrite(pinoLed, HIGH);
+  delay(5000);
+  Serial.println("Partiu mimi");
+  digitalWrite(pinoLed, LOW);
+
+  mimi();
+  Serial.println("Arduino Acordado!");
+
+  estadoBUILTIN = !estadoBUILTIN;
+  digitalWrite(LED_BUILTIN, estadoBUILTIN);
+
+  delay(2000);
+}
+
+void mimi() {
+  attachInterrupt(digitalPinToInterrupt(pinoBotao), disperta, LOW);
+
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
+
+  delay(1000);
+
+  sleep_cpu();
+}
+
+void disperta() {
+  Serial.println("Interrupção ativada, acordando arduino");
+  sleep_disable();
+  detachInterrupt(digitalPinToInterrupt(pinoBotao) );
+}
+```

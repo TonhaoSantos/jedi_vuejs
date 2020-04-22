@@ -54,7 +54,7 @@ Pegue o cabo que esta ligado no VΩmA (vermelho) do multimetro e ligue na metade
 
 Agora vamos ter quanto amperes o nosso sistema esta consumindo
 
-[Amperes Sistema](/amperessistema.png)
+![Amperes Sistema](/amperessistema.png)
 
 Agora basta fazer o calculo para saber quanto tempo dura.
 
