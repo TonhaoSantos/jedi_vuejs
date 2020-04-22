@@ -3,8 +3,12 @@
 >
 > Caso encontre alguma coisa que esteja errado pode me informar que estou aberto para correcoes.
 
-## Calculo Bateria
+## Dimensionar Bateria
 Calculo para saber quanto tempo dura uma bateria alimentando um projeto.
+
+_Exemplo 1_
+
+Umas das formas é ver nas especificacoes da bateria.
 
 Um Projeto X que é alimentado por uma bateria de 5v.
 
@@ -24,6 +28,57 @@ Se tivermos uma bateria descarregando e com carga de 5.55v e no nosso projeto ti
 
 Para o exemplo de consumo de 150mA (0.15A), nosso projeto pode durar entre 1 - 2 dias com a bateria de exemplo.
 
+_Exemplo 2_
+
+Outra forma de verificar quanto tempo vai durar a bateria no projeto é da seguinte forma.
+
+Digamos que temos uma pilha de 12v com capacidade de 100mAH e queremos que nosso sistema fique ligado por 1 hora.
+
+Para isso precisamos saber o consumo do nosso sistema, digamos que vimos o consumo e esta com 100mA certinho, logo o nosso sistema ficara ligado por 1 hora.
+
+Quanto menos consumo tivermos no nosso sistema para a mesma bateria ainda, mais tempo vai durar ele ligado.
+
+Se o consumo do nosso sistema for de 50mA, ficara ligado nesta bateria por 2 horas.
+
+Agora se o sistema tiver 200mA de consumo ficara ligado por meia hora nesta bateria.
+
+Podemos saber o consumo do nosso sistema por meio do multimetro.
+
+Alimentando o sistema na bateria, pegue o multimetro e configure os pinos para COM e VΩmA (ou VmAΩ) e na escala de amperimetro com a faixa que vc precisa.
+
+Interrompe o sistema no fio posssitivo ficando o fio possitivo partido com uma parte no sistema e outra na fonte
+
+Pegue o cabo que esta ligado no COM (preto) do multimetro e ligue na metade do fio que ficou no sistema
+
+Pegue o cabo que esta ligado no VΩmA (vermelho) do multimetro e ligue na metade do fio que ficou na bateria
+
+Agora vamos ter quanto amperes o nosso sistema esta consumindo
+
+[Amperes Sistema](/amperessistema.png)
+
+Agora basta fazer o calculo para saber quanto tempo dura.
+
+Digamos que temos um sistema de 52mA e uma bateria de 12v e 1AH.
+
+```js
+1x1000=1000 mA
+0,952x1000=52 mA
+1000 mAh / 52 mAh = 19,23... Horas
+
+1/0,052=19,23 (resumido)
+```
+
+Logo para o exemplo temos uma bataria de 12v e 1AH que vai durar 19horas em um sistema que consome 52mA.
+
+Para calcular a potencia:
+
+```js
+// Pilha de 12v
+// mA sistema 52mA
+P = Ventrada * mASistema
+P = 12 * 0,052
+P = 624mW (miliwatts)
+```
 
 ## LED
 Existe led alto brilho que nao é pintado e difuso que é pintado.
