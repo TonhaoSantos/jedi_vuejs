@@ -8,7 +8,17 @@
 >
 > O pino 3 é usado para regular a claridade do display, se nao tiver um potenciometro ou nao quiser regular o brilho e quiser o maximo é só ligar ele no terra (Lemnrando que o mais claro da para ver um fundo nas letras)
 >
-> Do pino 4 em diante sao os pinos de controle, por meio deles podemos informar para o arduino oq queremos que ele faca, se queremos que ele apague tudo que esta nele, pisque, ...
+> Do pino 4 ao 6 sao os pinos de controle, por meio deles podemos informar para o arduino oq queremos que ele faca, se queremos que ele apague tudo que esta nele, pisque, ...
+>
+> No pino 4 informamos para o arduino se estamos enviando o texto que sera escrito ou comandos/formatos para tratar o conteudo informado como o display ira trabalhar
+>
+> O pino 5 serve para tratar se vamos receber informacoes no display ou se queremos ler o que esta no display garantindo meio que um callback da informacao, GND para somente escrita e alguma porta digital para leitura
+>
+> O pino 6 é o pino de enable, serve para o arduino informa que esta enviando informacoes. Funciona como se fosse um botao salvar em algum programa. Quando o arduino prepara as informacoes  dos pinos 7 ao 14 o pino enable quando ligado envia as informacoes para o display
+>
+> Do 7 ao 14 sao pinos de dados, ou seja, vamos ligar 8 pinos que seriam 8 bits para enviar um byte por vez para o display
+>
+> O pino 15 (anodo) e 16 (catodo) sao as luzes de fundo 
 
 ![LCD 16X2](/lcd_16_2.png)
 
