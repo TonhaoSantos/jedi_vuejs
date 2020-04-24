@@ -5,6 +5,8 @@
 
 ## LCD 16x2
 > Alguns LCD's podem nao vir com um resistor no pino 15(A/Led 1), podemos usar dois resistores de **165 Ohms** sem serie
+>
+> O pino 3 é usado para regular a claridade do display, se nao tiver um potenciometro ou nao quiser regular o brilho e quiser o maximo é só ligar ele no terra (Lemnrando que o mais claro da para ver um fundo nas letras)
 
 ![LCD 16X2](/lcd_16_2.png)
 
@@ -13,7 +15,7 @@ Ligacoes
 |-----------|----------|-----------|
 | 1         |  VSS     |  GND      |
 | 2         |  VDD     |  VCC 5V   |
-| 3         |  V0      |  Pino central potenciometro    |
+| 3         |  V0      |  Pino central potenciometro (vai de 0v até 5v)    |
 | 4         |  RS      |  Pino 12 Arduino         |
 | 5         |  RW      |  GND         |
 | 6         |  E       |  Pino 11 Arduino         |
