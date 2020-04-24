@@ -7,6 +7,8 @@
 > Alguns LCD's podem nao vir com um resistor no pino 15(A/Led 1), podemos usar dois resistores de **165 Ohms** sem serie
 >
 > O pino 3 é usado para regular a claridade do display, se nao tiver um potenciometro ou nao quiser regular o brilho e quiser o maximo é só ligar ele no terra (Lemnrando que o mais claro da para ver um fundo nas letras)
+>
+> Do pino 4 em diante sao os pinos de controle, por meio deles podemos informar para o arduino oq queremos que ele faca, se queremos que ele apague tudo que esta nele, pisque, ...
 
 ![LCD 16X2](/lcd_16_2.png)
 
