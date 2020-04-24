@@ -923,6 +923,8 @@ void loop() {
 - Tensão de operação (máxima): 150VDC
 - Potência máxima: 100mW
 
+O valor de retorno do LDR pode ser de 0 até 1023.
+
 ![Luminosidade](/luminosidade.png)
 
 ```js
