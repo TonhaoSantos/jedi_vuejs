@@ -12,11 +12,18 @@
 >
 > No pino 4 informamos para o arduino se estamos enviando o texto que sera escrito ou comandos/formatos para tratar o conteudo informado como o display ira trabalhar
 >
-> O pino 5 serve para tratar se vamos receber informacoes no display ou se queremos ler o que esta no display garantindo meio que um callback da informacao, GND para somente escrita e alguma porta digital para leitura
+> O pino 5 serve para tratar se vamos receber informacoes no display ou se queremos ler o que esta no display garantindo meio que um
+> callback da informacao, GND para somente escrita e alguma porta digital para leitura e escrita. Se nao quisermos usar ela e deixar
+> o padrao que é somente escrita podemos ligar somente no GND, fazendo isso nao precisamos definir a porta no LiquidCrystal que ele já
+> vai saber que nao estamos usando 
 >
 > O pino 6 é o pino de enable, serve para o arduino informa que esta enviando informacoes. Funciona como se fosse um botao salvar em algum programa. Quando o arduino prepara as informacoes  dos pinos 7 ao 14 o pino enable quando ligado envia as informacoes para o display
 >
 > Do 7 ao 14 sao pinos de dados, ou seja, vamos ligar 8 pinos que seriam 8 bits para enviar um byte por vez para o display
+>
+> Se precisarmos que as informacoes sejam enviadas muito rapido do arduino para o display usamos todos os pinos de 7 ao 14
+> caso nao precisemos podemos desligar os pinos 7, 8, 9 e 10. A mudancao é que um bit que é de 8 bits sera enviado duas vezes
+> é imperceptível para a maiorias dos programas
 >
 > O pino 15 (anodo) e 16 (catodo) sao as luzes de fundo 
 
