@@ -7,6 +7,12 @@ Tomando como base um componente pai qualquer que tem um filho chamado **MyCompon
 <template>
   <div>
     <MyComponent @return-input-value="componenteValue('myComponent', $event)" />
+
+    <p>Ou apenas o evento</p>
+    <MyComponent @return-input-value="componenteValue($event)" />
+
+    <p>Ou nada</p>
+    <MyComponent @return-input-value="componenteValue()" />
   </div>
 </template>
 
