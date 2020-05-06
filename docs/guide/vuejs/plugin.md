@@ -1,6 +1,8 @@
 # Plugin
 > Maneira de conectar recursos globais a um aplicativo e estendê-los para nosso uso
 
+## Usar um plugin
+
 Algumas categorias que os plugins se enquadram são:
 - Adicionar alguns métodos ou propriedades globais.
 - Adicionar um ou mais ativos globais: **diretivas**, **filtros**,***transições** e outros.
@@ -48,6 +50,9 @@ new Vue({
   ...
 }).$mount('#app')
 ```
+
+
+## Criar um plugin
 
 A estrutura de um componente é esta:
 
