@@ -54,6 +54,35 @@ new Vue({
 
 ## Criar um plugin
 
+Para criar um plugin de maneira facil basta usar o vue cli e criar um projeto com configuracao default (basico).
+
+Para instalar o @vue/cli globalmente
+
+```js
+yarn global add @vue/cli
+```
+
+Depois é só criar um projeto basico
+```js
+vue create plugin-button
+```
+
+```js
+Vue CLI v4.3.1
+? Please pick a preset: (Use arrow keys)
+❯ default (babel, eslint) 
+  Manually select features 
+```
+
+Espera terminar de criar o projeto e inicie o mesmo
+
+```js
+yarn serve
+```
+
+
+
+
 A estrutura de um componente é esta:
 
 ```js
@@ -202,7 +231,5 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 ```
-
-
 
 
