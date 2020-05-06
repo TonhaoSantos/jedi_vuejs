@@ -233,6 +233,11 @@ export default {
 </style>
 ```
 
+Se rodar seu projeto poderar testar o plugin
+```js
+yarn serve
+```
+
 A estrutura de um componente é esta:
 
 ```js
