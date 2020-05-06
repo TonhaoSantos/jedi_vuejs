@@ -53,6 +53,7 @@ new Vue({
 
 
 ## Criar um plugin
+> Documentacao [AQUI](https://cli.vuejs.org/guide/build-targets.html#library)
 
 Para criar um plugin de maneira facil basta usar o vue cli e criar um projeto com configuracao default (basico).
 
@@ -80,8 +81,157 @@ Espera terminar de criar o projeto e inicie o mesmo
 yarn serve
 ```
 
+Vamos fazer algumas mudancas
 
+Indo no ```package.json```, inclua um o build-lib script:
+```js
+vue-cli-service build --target lib --inline-vue --name nome-plugin [entry]
+```
 
+Alterar o **nome-plugin** para o nome do seu projeto
+
+Altere o **[entry]** para o arquivo que sera a entrada do plugin, neste caso o ```src/main.js```. Se nao informado, ficando **[entry]** será o ```src/App.vue```
+
+O scripts no ```package.json``` ficou mais ou menos assim:
+```js
+"scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --inline-vue --name plugin-button src/main.js",
+    "lint": "vue-cli-service lint"
+}
+```
+
+Se voce rodar ```yarn build-lib```vera isso:
+```js
+ DONE  Compiled successfully in 4866ms                                                                 2:14:44 PM
+
+  File                             Size                 Gzipped
+
+  dist/plugin-button.umd.min.js    70.49 KiB            25.14 KiB
+  dist/plugin-button.umd.js        222.08 KiB           60.92 KiB
+  dist/plugin-button.common.js     221.69 KiB           60.81 KiB
+  dist/plugin-button.css           0.33 KiB             0.23 KiB
+
+  Images and other types of assets omitted.
+
+✨  Done in 7.16s.
+```
+
+O resultado retornado Significa que a construção foi bem-sucedida.
+
+Se olharmos para a pasta dist podemos ver varios arquivos, precisamos definir qual arquivo vai ser usado por qualquer aplicativo que importe nosso plugin.
+
+Vamos escolher o terminado com ```.common.js````
+
+Indo no ```package.json``` adicione o a sessao main:
+```js
+"main": "./dist/plugin-button.common.js"
+```
+
+Ficando assim:
+```js
+"main": "./dist/plugin-button.common.js",
+"scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --inline-vue --name plugin-button src/main.js",
+    "lint": "vue-cli-service lint"
+}
+```
+
+Para exemplo, vamos seguir criando um plugin de botao.
+
+Indo na pasta **components** crie um componente chamado ```SimpleButton.vue``` e coloque este conteudo
+
+```html
+<template>
+  <div>
+    <button @click="increment">{{ text }}</button>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      count: 0
+    }
+  },
+  computed: {
+    times () {
+      return this.count > 1
+        ? 'times'
+        : 'time'
+    },
+    text () {
+      return `I have been clicked ${this.count} ${this.times}`
+    }
+  },
+  methods: {
+    increment () {
+      this.count += 1
+    }
+  }
+}
+</script>
+```
+
+O vue nos permite ver este componente funcionando, rode o seguinte:
+
+```js
+vue serve src/components/SimpleButton.vue
+```
+
+Ao abrir o navegador podemos testar o botao.
+
+Agora para que possamos usar este plugin em outros lugares temos que informar o que sera exportado.
+
+Indo no ```main.js``` e apagando tudo que contem nele, cole o seguinte
+
+```js
+import SimpleButton from './components/SimpleButton.vue'
+
+export default SimpleButton
+```
+
+Não esqueca de fazer o rebuild sempre que terminar de atualizar alguma coisa
+
+Se compartilhamos este projeto sem publicar no NPM/YARN, podemos fazer a instalacao de um pacote local com o yarn
+
+Estando em outro projeto podemos fazer assim
+```js
+yarn add ../plugin-button
+```
+
+Para usar por exemplo no ```APP.vue``` de um outro projeto
+```js
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <simple-button />
+  </div>
+</template>
+<script>
+import SimpleButton from 'plugin-button'
+
+export default {
+  name: 'app',
+  components: {
+    SimpleButton
+  }
+}
+</script>
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
 
 A estrutura de um componente é esta:
 
