@@ -147,29 +147,27 @@ Indo na pasta **components** crie um componente chamado ```SimpleButton.vue``` e
 ```html
 <template>
   <div>
-    <button @click="increment">{{ text }}</button>
+    <button @click="incremento">{{ texto }}</button>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      count: 0
+      contador: 0
     }
   },
   computed: {
-    times () {
-      return this.count > 1
-        ? 'times'
-        : 'time'
+    vezes () {
+      return this.contador === 1 ? 'vez' : 'vezes'
     },
-    text () {
-      return `I have been clicked ${this.count} ${this.times}`
+    texto () {
+      return `Clicado ${this.contador} ${this.vezes}`
     }
   },
   methods: {
-    increment () {
-      this.count += 1
+    incremento () {
+      this.contador += 1
     }
   }
 }
@@ -238,7 +236,103 @@ Se rodar seu projeto poderar testar o plugin
 yarn serve
 ```
 
-A estrutura de um componente é esta:
+Caso o seu plugin precise trabalhar com vuex, devemos lembrar que o vue só permite apenas uma instancia do vuex. 
+
+Para usar a nossa store precisamos apenas definir a estrutura dela e informar que nosso projeto depende do vuex instalado no projeto.
+
+Para usarmos, primeiro precisamos criar a estrutura da store, se voce usa em um arquivo unico OK, se usa modular OK, precisamos apenas do caminho depois.
+
+Vou criar aqui um arquivo chamado ```store.js``` na raiz do plugin com este conteudo
+
+```js
+const store = {
+  state: {
+    contador: 0
+  },
+  getters: {
+    contador: state => state.contador
+  },
+  mutations: {
+    increment (state) {
+      state.contador += 1
+    }
+  }
+}
+export default store
+```
+
+Atualize o plugin ```SimpleButton.vue``` com este conteudo
+
+```html
+<template>
+  <div>
+    <button @click="incremento">{{ texto }}</button>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {}
+  },
+  computed: {
+    vezes () {
+      return this.$store.getters.contador === 1 ? 'vez' : 'vezes'
+    },
+    texto () {
+      return `Clicado ${this.$store.getters.counter} ${this.vezes}`
+    }
+  },
+  methods: {
+    incremento () {
+      this.$store.commit('increment')
+    }
+  }
+}
+</script>
+```
+
+Precisamos atualizar o main.js do plugin para isso
+```js
+import SimpleButton from './components/SimpleButton.vue'
+
+import store from './store.js'
+
+export default {
+  install (Vue, options) {
+    // Precisamos que vuex seja passada como opcao para que possamos registrar a vuex do plugin
+    if (!options || !options.store) {
+      throw new Error('Please initialise plugin with a Vuex store.')
+    }
+    
+    options.store.registerModule('simplebutton', store)
+ 
+    Vue.component('simple-button', SimpleButton)
+  }
+}
+```
+
+Precisamos fazer pois exportar nao era o suficiente, precisavamos torna-lo um plugin
+
+Agora podemos usar ele assim no main.js do projeto que queremos ele
+```js
+import DummyButton from 'dummylib';
+
+Vue.use (MyPlugin, {someOption: someValue})
+
+// ou
+Vue.use(DummyButton);
+```
+
+Esta segunda forma é para quando o plugin nao precisa de opcoes para funcionar, no caso deste plugin que criamos ele precisa, entao usariamos o primeiro ```Vue.use```
+
+```js
+import DummyButton from 'dummylib';
+
+Vue.use (MyPlugin, {someOption: someValue})
+```
+
+
+A estrutura um pouco mais detalhada do que se pode fazer no ```install```de um plugin/componente vamos ver no decorrer, o install é assim:
 
 ```js
 export default {
