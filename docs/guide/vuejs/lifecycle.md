@@ -57,7 +57,7 @@ Primeiro gancho que é chamado depois que a instância do Vue foi inicializada. 
 
 ## Created
 
-Chamado depois que a instância é criada. Nesse estágio, a instância concluiu o processamento, a observação de dados (reatividade), propriedades calculadas, métodos, observadores e retornos de chamada de eventos foram configurados. Você não pode interagir com o DOM neste estágio porque seu componente não foi montado. A propriedade $el também não está disponível ainda.
+Chamado depois que a instância é criada. Nesse estágio, a instância do Vue foi inicializada e ativou o início de coisas como computed, watchs, methods, data e manipulações que acompanham. Você não pode interagir com o DOM neste estágio porque seu componente não foi montado. A propriedade $el também não está disponível ainda.
 
 ## beforeMount
 
