@@ -37,6 +37,13 @@ module.exports = {
         ]
       },
       {
+        title: 'JavaScript',
+        children: [
+          '/guide/js/introducao',
+          '/guide/js/ecmascript',
+        ]
+      },
+      {
         title: 'Vue.js',
         children: [
           '/guide/vuejs/introducao',
