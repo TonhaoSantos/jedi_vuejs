@@ -55,3 +55,35 @@ function retornaArray(a: number, ...argumentos: number[]): number {
 const numeros = retornaArray(1, 2, 3, 4, 5, 345, 623)
 conosle.log(numeros)
 ```
+
+## Destructuring
+
+Em Array
+```js
+const [motor, ano] = ['Motor Zetec', '2020']
+
+console.log(motor)
+console.log(ano)
+```
+
+Em Objeto
+```js
+const item = {
+    nome: 'SSD 480GB',
+    preco: 200,
+    marca: 'X',
+    caracteristicas: {
+        x: 'Importado'
+    }
+}
+
+// Sem Alias
+const { nome, preco, caracteristicas: { w } } = item
+console.log(nome)
+console.log(preco)
+
+// Com Alias
+const { nome: n, preco: p } = item
+console.log(n)
+console.log(p)
+```
