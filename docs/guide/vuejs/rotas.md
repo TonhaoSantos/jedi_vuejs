@@ -13,6 +13,13 @@ Características incluem:
 - Modo de histórico de HTML5 ou modo de hash, com fallback automático no IE9
 - Comportamento de rolagem personalizável
 
+```js
+// Obtem o vue-router ()
+this.$router
+
+// Obtem a rota atua
+this.$route
+```
 
 Algumas formas possiveis de definir e chamar rotas
 ```js
