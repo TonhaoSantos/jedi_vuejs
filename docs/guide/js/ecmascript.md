@@ -87,3 +87,44 @@ const { nome: n, preco: p } = item
 console.log(n)
 console.log(p)
 ```
+
+## Optional Chaining
+> Encadeamento opcional
+
+Verifica se o valor a esquerda de ```?.```é null ou undefined
+
+Age diferente do que ```&&```, este por sua vez atua em valores falsos (string vazia, 0, NaN e false)
+
+```js
+let x = foo?.bar.baz();
+
+// Se o foo for null ou undefined retorna um undefined
+// Seria o mesmo que isso
+let x = (foo === null || foo === undefined) ? foo.bar.baz();
+```
+
+Outro exemplo, agora deixando como opcional bar tbm
+
+```js
+if (foo?.bar?.baz) {}
+
+// Se o foo e bar for null ou undefined retorna um undefined
+// Seria o mesmo que isso
+if (foo && foo.bar && foo.bar.baz) {}
+```
+
+
+## Nullish Coalescing
+> Coalescência nula
+
+Retorna a um valor padrão quando trabalhado com null ou undefined
+
+É usado para evitar o comportamento não intencional do ```||``` para 0, NaNe e "", ou seja, tratando valores Falsos
+
+```js
+let x = foo ?? bar()
+
+// foo sera usado quando estiver existir, quando for null ou undefined seu valor vai ser bar()
+// Seria o mesmo que isso
+let x = (foo !== null && foo !== undefined) ? oo : bar();
+```
