@@ -21,6 +21,16 @@ this.$router
 this.$route
 ```
 
+O Vue Router nao faz navegacao para fora, para isso podemos usar o vanilla
+
+```js
+window.location = 'http://www.example.com'
+
+location.replace('http://example.com')
+
+window.open('http://example.com')
+```
+
 Algumas formas possiveis de definir e chamar rotas
 ```js
 import Vue from 'vue'
