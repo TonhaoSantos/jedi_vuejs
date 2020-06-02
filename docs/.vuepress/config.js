@@ -140,12 +140,6 @@ module.exports = {
         ]
       },
       {
-        title: 'JavaScript',
-        children: [
-          '/guide/javascript/introducao'
-        ]
-      },
-      {
         title: 'Web Scraping',
         children: [
           '/guide/webscraping/introducao',
