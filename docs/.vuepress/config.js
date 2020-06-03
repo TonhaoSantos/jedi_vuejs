@@ -40,7 +40,8 @@ module.exports = {
         title: 'JavaScript',
         children: [
           '/guide/js/introducao',
-          '/guide/js/ecmascript',
+          '/guide/js/vanilla',
+          '/guide/js/ecmascript'
         ]
       },
       {
