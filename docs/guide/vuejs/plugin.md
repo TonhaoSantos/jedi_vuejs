@@ -51,6 +51,39 @@ new Vue({
 }).$mount('#app')
 ```
 
+Para usar um plugin globalmente podemos fazer assim (axios como exemplo).
+```js
+// src/api.js
+import axios from 'axios'
+
+export default axios.create({
+  baseURL: 'http://localhost:5000/api'
+});
+```
+```js
+// src/main.js
+import Vue from "vue";
+import App from "./App.vue";
+
+import API from "./api";
+Vue.prototype.$http = API;
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: (h) => h(App)
+}).$mount("#app");
+```
+```js
+// Algum componente
+methods: {
+  algumaFuncao () {
+    $.$http.get("https://jsonplaceholder.typicode.com/posts")
+      .then(r => { console.log(r) })
+      .catch(e => { console.log(e) })
+  }
+}
+```
 
 ## Criar um plugin
 > Documentacao [AQUI](https://cli.vuejs.org/guide/build-targets.html#library)
