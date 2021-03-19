@@ -68,7 +68,8 @@ module.exports = {
           '/guide/vuejs/plugin',
           '/guide/vuejs/store',
           '/guide/vuejs/i18n',
-          '/guide/vuejs/axios'
+          '/guide/vuejs/axios',
+          '/guide/vuejs/cheat-sheat'
         ]
       },
       {
