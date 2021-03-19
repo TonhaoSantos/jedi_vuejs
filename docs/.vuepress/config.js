@@ -69,7 +69,7 @@ module.exports = {
           '/guide/vuejs/store',
           '/guide/vuejs/i18n',
           '/guide/vuejs/axios',
-          '/guide/vuejs/cheat-sheat'
+          '/guide/vuejs/cheat-sheet'
         ]
       },
       {
